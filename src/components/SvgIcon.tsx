@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import { rem } from "polished"
+import styled from 'styled-components'
+import { rem } from 'polished'
 
 export enum SvgIconSize {
   Xs,
@@ -10,11 +10,13 @@ export enum SvgIconSize {
 export interface SvgIconProps {
   $size?: SvgIconSize
   children: JSX.Element | JSX.Element[]
+  width?: string
+  height?: string
 }
 
 const SvgIcon = styled.svg<SvgIconProps>`
-  width: ${rem(20)};
-  height: ${rem(20)};
+  width: ${(props) => (props.width ? props.width : rem(20))};
+  height: ${(props) => (props.height ? props.height : rem(20))};
   display: inline-block;
   vertical-align: middle;
   margin-right: ${rem(10)};

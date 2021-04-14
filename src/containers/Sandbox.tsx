@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react"
-import { Stage, Layer } from "react-konva"
-import { Vector2d } from "konva/types/types"
-import { not } from "ramda"
-import styled from "styled-components"
+import React, { useEffect, useRef, useState } from 'react'
+import { Stage, Layer } from 'react-konva'
+import { Vector2d } from 'konva/types/types'
+import { not } from 'ramda'
+import styled from 'styled-components'
 
 import {
   CONTROLLER_ROTATION,
@@ -13,18 +13,18 @@ import {
   SCALE_FACTOR,
   STAGE_HEIGHT,
   STAGE_WIDTH,
-} from "../helpers/const"
+} from '../helpers/const'
 
-import { download, detectFace, loadModels } from "../helpers/utils"
+import { download, detectFace, loadModels } from '../helpers/utils'
 
-import { slideUp } from "../core/GlobalStyles"
+import { slideUp } from '../core/GlobalStyles'
 
-import { IconEdit, IconSave, IconShare } from "../icons"
-import Figure from "../components/Figure"
-import Button, { ButtonColor, ButtonSize } from "../components/Button"
+import { IconEdit, IconSave, IconShare } from '../icons'
+import Figure from '../components/Figure'
+import Button, { ButtonColor, ButtonSize } from '../components/Button'
 
-import Controller from "./Controller"
-import { KonvaEventObject } from "konva/types/Node"
+import Controller from './Controller'
+import { KonvaEventObject } from 'konva/types/Node'
 
 interface Props {
   file?: string
@@ -40,10 +40,10 @@ export enum Cursor {
   Grabbing,
 }
 
-const CURSORS = new Map<Cursor, "initial" | "grab" | "grabbing">([
-  [Cursor.Default, "initial"],
-  [Cursor.Grab, "grab"],
-  [Cursor.Grabbing, "grabbing"],
+const CURSORS = new Map<Cursor, 'initial' | 'grab' | 'grabbing'>([
+  [Cursor.Default, 'initial'],
+  [Cursor.Grab, 'grab'],
+  [Cursor.Grabbing, 'grabbing'],
 ])
 
 const Sandbox: React.FC<Props> = ({ file }: Props) => {
@@ -106,12 +106,12 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
     <Wrapper preview={file} cursor={cursor}>
       <Stage width={STAGE_WIDTH} height={STAGE_HEIGHT} ref={stageRef} className="stage">
         <Layer>
-          <Figure fit src={file || "/static/images/default.jpg"} />
+          <Figure fit src={file || '/static/images/default.jpg'} />
           <Figure
             draggable
             scale={scale}
             rotation={rotation}
-            src="/static/images/unicorn.png"
+            src="/static/images/mask.svg"
             x={coordinates?.x}
             y={coordinates?.y}
             offsetX={MASK_WIDTH / SCALE_FACTOR}
@@ -157,8 +157,7 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
               as="a"
               target="_blank"
               rel="noreferrer"
-              href="https://twitter.com/intent/tweet?url=uniswap.org&text=Uniswap%20V3%20is%20here.%20Read%20the%20announcement%20blog%20post%20%F0%9F%A6%84%F0%9F%A6%84"
-            >
+              href="https://twitter.com/intent/tweet?url=uniswap.org&text=Uniswap%20V3%20is%20here.%20Read%20the%20announcement%20blog%20post%20%F0%9F%A6%84%F0%9F%A6%84">
               <IconShare />
               Share
             </Button>
@@ -171,7 +170,7 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
 
 const Wrapper = styled.div<WrapperProps>`
   position: relative;
-  background-image: ${(props) => `url(${props.preview})` || "none"};
+  background-image: ${(props) => `url(${props.preview})` || 'none'};
   background-size: cover;
   background-position: center;
   overflow: hidden;
@@ -179,7 +178,7 @@ const Wrapper = styled.div<WrapperProps>`
   cursor: ${(props) => CURSORS.get(props.cursor)};
 
   &:before {
-    content: "";
+    content: '';
     pointer-events: none;
     position: absolute;
     left: 0;

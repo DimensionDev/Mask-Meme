@@ -1,7 +1,7 @@
-import React from "react"
-import { Grid } from "react-styled-flexboxgrid"
-import styled from "styled-components"
-import { rem } from "polished"
+import React from 'react'
+import { Grid } from 'react-styled-flexboxgrid'
+import styled from 'styled-components'
+import { rem } from 'polished'
 
 const StyledLogo = styled.img`
   height: 60px;
@@ -11,10 +11,7 @@ const Header: React.FC = () => {
   return (
     <Wrapper>
       <Grid>
-        <Logo href="/">
-          <StyledLogo src="/static/images/uni-logo.svg" alt="V3 MASK" />
-          <span>UNI Mask</span>
-        </Logo>
+        <Logo href="/"></Logo>
       </Grid>
     </Wrapper>
   )

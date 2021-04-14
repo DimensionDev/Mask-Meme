@@ -1,11 +1,11 @@
-import React from "react"
-import useImage from "use-image"
-import { head } from "ramda"
-import { Image } from "react-konva"
-import { Vector2d } from "konva/types/types"
+import React from 'react'
+import useImage from 'use-image'
+import { head } from 'ramda'
+import { Image } from 'react-konva'
+import { Vector2d } from 'konva/types/types'
 
-import { scaleFigure } from "../helpers/utils"
-import { KonvaEventObject } from "konva/types/Node"
+import { scaleFigure } from '../helpers/utils'
+import { KonvaEventObject } from 'konva/types/Node'
 
 /**
  * Types

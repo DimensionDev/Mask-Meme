@@ -1,9 +1,9 @@
-import React from "react"
-import { Grid, Row, Col } from "react-styled-flexboxgrid"
-import styled from "styled-components"
-import { rem } from "polished"
+import React from 'react'
+import { Grid, Row, Col } from 'react-styled-flexboxgrid'
+import styled from 'styled-components'
+import { rem } from 'polished'
 
-import Social from "./Social"
+import Social from './Social'
 
 const Footer: React.FC = () => {
   return (

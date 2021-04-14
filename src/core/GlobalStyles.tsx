@@ -1,5 +1,5 @@
-import { createGlobalStyle, keyframes } from "styled-components"
-import { normalize, rem } from "polished"
+import { createGlobalStyle, keyframes } from 'styled-components'
+import { normalize, rem } from 'polished'
 
 export const GlobalStyles = createGlobalStyle`
   ${normalize()};
@@ -38,7 +38,7 @@ export const GlobalStyles = createGlobalStyle`
     font-size: ${(props) => rem(props.theme.fontSize.base)};
     font-family: ${(props) => props.theme.font.base};
     color: ${(props) => props.theme.colors.black};
-    background-color: ${(props) => props.theme.colors.white};
+    background-color: ${(props) => props.theme.colors.grey};
     direction: ltr;
     overscroll-behavior: none;
     -moz-osx-font-smoothing: grayscale;

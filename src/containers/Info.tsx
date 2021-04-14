@@ -1,11 +1,13 @@
-import React from "react"
-import { useDropzone } from "react-dropzone"
-import { Row, Col } from "react-styled-flexboxgrid"
-import styled from "styled-components"
-import { rem } from "polished"
+import React from 'react'
+import { useDropzone } from 'react-dropzone'
+import { Row, Col } from 'react-styled-flexboxgrid'
+import styled from 'styled-components'
+import { rem } from 'polished'
 
-import Button, { ButtonColor, ButtonSize } from "../components/Button"
-import { IconInfo } from "../icons"
+import Button, { ButtonColor, ButtonSize } from '../components/Button'
+import { IconLogo, IconInput, IconTwitter, IconTelegram, IconFacebook, IconDiscord, IconGithub } from '../icons'
+import SocialMenu from 'components/menu'
+import { SvgIconSize } from 'components/SvgIcon'
 
 interface Props {
   onDrop: (files: File[]) => void
@@ -18,27 +20,47 @@ const Info: React.FC<Props> = ({ onDrop }: Props) => {
     <Wrapper>
       <Row middle="xs" center="xs">
         <Col xs={12}>
-          <h1>Uniswap V3 Mask</h1>
+          <IconLogo />
+          <h1>Create your own Mask!</h1>
           <p>
-            Share your support for Uniswap V3. <br />
-            Upload your photo, choose your mask, and download <br />
-            or share with the Twitter button!
+            Share your support for Maskl <br />- the portal to the new, open internet.
           </p>
-          <Links>
-            <a href="https://uniswap.org/blog/uniswap-v3" target="_blank" rel="noreferrer">
-              <IconInfo />
-              <span>V3 Blog Post</span>
-            </a>
-          </Links>
           <UploadWrapper>
             <div>
-              <Button $color={ButtonColor.White} $size={ButtonSize.Lg} {...getRootProps()}>
+              <Button $color={ButtonColor.Blue} $size={ButtonSize.Lg} {...getRootProps()}>
+                <IconInput />
                 Pick Photo
                 <input {...getInputProps()} name="file" accept="image/*" />
               </Button>
-              <Hint>or drag and drop your file here</Hint>
+              <Hint>You can also drag your photo here </Hint>
             </div>
           </UploadWrapper>
+
+          <SocialMenu
+            link={{ url: 'https://mask.io', name: 'Mask.io' }}
+            data={[
+              {
+                url: 'https://www.facebook.com/groups/324857694838456',
+                icon: <IconFacebook width={rem(36)} height={rem(36)} />,
+              },
+              {
+                url: 'https://twitter.com/realmaskbook',
+                icon: <IconTwitter width={rem(36)} height={rem(36)} />,
+              },
+              {
+                url: 'https://t.me/maskbook_group#telegram',
+                icon: <IconTelegram width={rem(36)} height={rem(36)} />,
+              },
+              {
+                url: 'https://discord.gg/4SVXvj7',
+                icon: <IconDiscord width={rem(36)} height={rem(36)} />,
+              },
+              {
+                url: 'https://github.com/DimensionDev',
+                icon: <IconGithub width={rem(36)} height={rem(36)} />,
+              },
+            ]}
+          />
         </Col>
       </Row>
     </Wrapper>
@@ -72,42 +94,10 @@ const Wrapper = styled.div`
   }
 `
 
-const Links = styled.div`
-  padding-bottom: ${rem(10)};
-
-  svg path {
-    fill: ${(props) => props.theme.colors.primary};
-    transition: fill ${(props) => props.theme.transition.base};
-  }
-
-  a {
-    color: ${(props) => props.theme.colors.primary};
-    padding: ${rem(10)};
-    white-space: nowrap;
-
-    & + a {
-      margin-left: ${rem(12)};
-    }
-
-    &:hover {
-      color: #ff8cc3;
-
-      svg path {
-        fill: #ff8cc3;
-      }
-    }
-  }
-
-  @media all and (max-width: 767px) {
-    margin-bottom: 24px;
-    padding-bottom: 0;
-  }
-`
-
 const Hint = styled.div`
   margin: ${rem(14)} 0 0;
-  opacity: 0.4;
-  font-size: ${rem(14)};
+  opacity: 1;
+  font-size: ${rem(18)};
   color: ${(props) => props.theme.colors.dark};
   letter-spacing: 0;
   text-align: center;
@@ -127,8 +117,14 @@ const UploadWrapper = styled.div`
   position: relative;
 
   ${Button} {
+    text-transform: unset;
     max-width: 100%;
     min-width: ${rem(210)};
+    padding-right: ${rem(64)};
+    padding-left: ${rem(64)};
+    border-radius: 8px;
+    font-family: ${(props) => props.theme.font.base};
+    font-size: ${rem(18)};
   }
 
   @media all and (min-width: 768px) {
@@ -142,6 +138,7 @@ const UploadWrapper = styled.div`
       top: 0;
       appearance: none;
       cursor: pointer;
+      font-size: ${rem(16)};
     }
   }
 

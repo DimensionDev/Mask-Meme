@@ -4,7 +4,7 @@ const theme = {
     gridSize: 12, // columns
     gutterWidth: 1, // rem
     outerMargin: 1.5, // rem
-    mediaQuery: "only screen",
+    mediaQuery: 'only screen',
     container: {
       sm: 0, // rem
       md: 64, // rem
@@ -18,7 +18,7 @@ const theme = {
     },
   },
   font: {
-    base: "'Inter', sans-serif",
+    base: " 'Inter', sans-serif",
     headings: "'Inter', sans-serif",
   },
   fontSize: {
@@ -40,18 +40,20 @@ const theme = {
     black: 900,
   },
   colors: {
-    primary: "#ff007a",
-    secondary: "#0F0F0F",
-    tertiary: "#3F5FBF",
-    dark: "#252628",
-    accent: "#fdebd1",
-    gray: "#777B84",
-    black: "#0F0F0F",
-    white: "#ffffff",
-    odd: "#f7f7f7",
+    primary: '#ff007a',
+    secondary: '#0F0F0F',
+    tertiary: '#3F5FBF',
+    dark: '#252628',
+    accent: '#fdebd1',
+    gray: '#777B84',
+    black: '#0F0F0F',
+    white: '#ffffff',
+    odd: '#f7f7f7',
+    blue: '#1C68F3',
+    grey: '#E5E5E5',
   },
   transition: {
-    base: "0.3s ease",
+    base: '0.3s ease',
   },
 }
 

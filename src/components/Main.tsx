@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 const Main = styled.main`
   min-height: 100vh;
@@ -12,6 +12,7 @@ const Main = styled.main`
     flex-direction: column;
     align-items: center;
     height: 100vh;
+    justify-content: center;
   }
 `
 

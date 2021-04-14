@@ -1,12 +1,12 @@
-import React, { useState } from "react"
-import styled from "styled-components"
-import { rem } from "polished"
-import { Grid } from "react-styled-flexboxgrid"
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import { rem } from 'polished'
+import { Grid } from 'react-styled-flexboxgrid'
 
-import Info from "./Info"
-import Sandbox from "./Sandbox"
-import Card from "../components/Card"
-import Section from "../components/Section"
+import Info from './Info'
+import Sandbox from './Sandbox'
+import Card from '../components/Card'
+import Section from '../components/Section'
 
 const Playground: React.FC = () => {
   const [file, setFile] = useState<string | undefined>()
@@ -20,10 +20,10 @@ const Playground: React.FC = () => {
       <Grid>
         <Wrapper>
           <Card>
-            <Sandbox file={file} />
+            <Info onDrop={onDrop} />
           </Card>
           <Card>
-            <Info onDrop={onDrop} />
+            <Sandbox file={file} />
           </Card>
         </Wrapper>
       </Grid>
@@ -34,9 +34,9 @@ const Playground: React.FC = () => {
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  height: ${rem(520)};
+  height: ${rem(820)};
   height: 55vh;
-  min-height: ${rem(500)};
+  min-height: ${rem(800)};
   transform: translate3d(0, 0, 0);
   background-color: ${(props) => props.theme.colors.odd};
 

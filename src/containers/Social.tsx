@@ -1,9 +1,9 @@
-import React from "react"
-import styled from "styled-components"
-import { rem } from "polished"
+import React from 'react'
+import styled from 'styled-components'
+import { rem } from 'polished'
 
-import Dropdown from "../components/Dropdown"
-import { IconTwitter } from "../icons"
+import Dropdown from '../components/Dropdown'
+import { IconTwitter } from '../icons'
 
 const Wrapper = styled.div`
   margin-bottom: ${rem(30)};
@@ -61,11 +61,11 @@ const Social: React.FC = () => {
   return (
     <Wrapper>
       <Copy>
-        {"Forked from "}
+        {'Forked from '}
         <a href="https://stake.fish/" target="_block">
           stakefish
         </a>
-        {" & "}
+        {' & '}
         <a href="https://www.f2pool.com/" target="_block">
           f2pool
         </a>
@@ -74,8 +74,8 @@ const Social: React.FC = () => {
         <Dropdown
           title={<IconTwitter />}
           data={[
-            { name: "f2pool", url: "https://twitter.com/f2pool_official" },
-            { name: "stakefish", url: "https://twitter.com/stakefish" },
+            { name: 'f2pool', url: 'https://twitter.com/f2pool_official' },
+            { name: 'stakefish', url: 'https://twitter.com/stakefish' },
           ]}
         />
       </List>

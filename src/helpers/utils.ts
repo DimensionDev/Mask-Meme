@@ -1,8 +1,8 @@
-import { isNil } from "ramda"
+import { isNil } from 'ramda'
 
-import { nets, detectSingleFace, TinyFaceDetectorOptions, Point, IPoint } from "face-api.js"
+import { nets, detectSingleFace, TinyFaceDetectorOptions, Point, IPoint } from 'face-api.js'
 
-import { FILE_NAME, SCALE_FACTOR, STAGE_HEIGHT, STAGE_WIDTH, ONE_RADIAN_IN_DEGREES, CONTROLLER_ROTATION } from "./const"
+import { FILE_NAME, SCALE_FACTOR, STAGE_HEIGHT, STAGE_WIDTH, ONE_RADIAN_IN_DEGREES, CONTROLLER_ROTATION } from './const'
 
 export const scaleFigure = (image?: HTMLImageElement) => {
   if (isNil(image)) {
@@ -34,7 +34,7 @@ export const average = (points: Point[] | undefined): IPoint | undefined => {
       x: total.x + point.x,
       y: total.y + point.y,
     }),
-    { x: 0, y: 0 }
+    { x: 0, y: 0 },
   )
 
   return {
@@ -53,14 +53,14 @@ export const angleBetweenPoints = (left: IPoint, right: IPoint) => {
 
 export const loadModels = async () => {
   try {
-    await Promise.all([nets.tinyFaceDetector.loadFromUri("/models"), nets.faceLandmark68Net.loadFromUri("/models")])
+    await Promise.all([nets.tinyFaceDetector.loadFromUri('/models'), nets.faceLandmark68Net.loadFromUri('/models')])
   } catch (error) {
     console.error(error)
   }
 }
 
 export const detectFace = async (stage: any) => {
-  const face = stage.querySelector("canvas") as HTMLCanvasElement
+  const face = stage.querySelector('canvas') as HTMLCanvasElement
   const detector = await detectSingleFace(face, new TinyFaceDetectorOptions()).withFaceLandmarks()
 
   const left = average(detector?.landmarks.getLeftEye())
@@ -87,10 +87,10 @@ export const detectFace = async (stage: any) => {
 }
 
 export const download = (uri: string) => {
-  const element = document.createElement("a")
+  const element = document.createElement('a')
 
-  element.setAttribute("href", uri)
-  element.setAttribute("download", FILE_NAME)
+  element.setAttribute('href', uri)
+  element.setAttribute('download', FILE_NAME)
   document.body.appendChild(element)
   element.click()
   document.body.removeChild(element)

@@ -1,6 +1,6 @@
-import React from "react"
-import styled from "styled-components"
-import { rem } from "polished"
+import React from 'react'
+import styled from 'styled-components'
+import { rem } from 'polished'
 
 /**
  * Types
@@ -59,7 +59,7 @@ const Menu = styled.div`
     top: 100%;
     left: 50%;
     border: solid transparent;
-    content: "";
+    content: '';
     height: 0;
     width: 0;
     position: absolute;

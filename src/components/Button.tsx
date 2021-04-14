@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components"
-import { rem } from "polished"
+import styled, { css } from 'styled-components'
+import { rem } from 'polished'
 
 export enum ButtonSize {
   Xs,
@@ -13,6 +13,7 @@ export enum ButtonColor {
   Gray,
   Red,
   Black,
+  Blue,
 }
 
 export interface ButtonProps {
@@ -84,6 +85,21 @@ const Button = styled.button<ButtonProps>`
 
       &:hover {
         background-color: #353535;
+      }
+    `}
+
+  ${(props) =>
+    props.$color === ButtonColor.Blue &&
+    css`
+      background-color: #1c68f3;
+      color: ${props.theme.colors.white};
+
+      svg path {
+        fill: ${props.theme.colors.white};
+      }
+
+      $:hover {
+        background-color: #1c68f3;
       }
     `}
 

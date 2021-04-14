@@ -1,8 +1,8 @@
-import React from "react"
-import styled from "styled-components"
-import OutsideClickHandler from "react-outside-click-handler"
-import { SliderInput, SliderTrack, SliderRange, SliderHandle, SliderMarker } from "@reach/slider"
-import { rem, rgba } from "polished"
+import React from 'react'
+import styled from 'styled-components'
+import OutsideClickHandler from 'react-outside-click-handler'
+import { SliderInput, SliderTrack, SliderRange, SliderHandle, SliderMarker } from '@reach/slider'
+import { rem, rgba } from 'polished'
 
 import {
   CONTROLLER_ROTATION_MAX,
@@ -10,11 +10,11 @@ import {
   CONTROLLER_SIZE_MIN,
   CONTROLLER_SIZE_MAX,
   CONTROLLER_SIZE_STEP,
-} from "../helpers/const"
+} from '../helpers/const'
 
-import { slideUpPopover } from "../core/GlobalStyles"
+import { slideUpPopover } from '../core/GlobalStyles'
 
-import Button, { ButtonColor, ButtonSize } from "../components/Button"
+import Button, { ButtonColor, ButtonSize } from '../components/Button'
 
 interface Props {
   rotation: number
@@ -40,8 +40,7 @@ const Controller: React.FC<Props> = ({ rotation, scale, onRotation, onScale, onC
               min={CONTROLLER_SIZE_MIN}
               max={CONTROLLER_SIZE_MAX}
               step={CONTROLLER_SIZE_STEP}
-              onChange={onScale}
-            >
+              onChange={onScale}>
               <SliderTrack>
                 <SliderRange />
                 <SliderHandle />
@@ -60,8 +59,7 @@ const Controller: React.FC<Props> = ({ rotation, scale, onRotation, onScale, onC
               value={rotation}
               min={CONTROLLER_ROTATION_MIN}
               max={CONTROLLER_ROTATION_MAX}
-              onChange={onRotation}
-            >
+              onChange={onRotation}>
               <SliderTrack>
                 <SliderRange />
                 <SliderHandle />
@@ -98,7 +96,7 @@ const Wrapper = styled.div`
     top: 100%;
     left: 50%;
     border: solid transparent;
-    content: "";
+    content: '';
     height: 0;
     width: 0;
     position: absolute;
@@ -113,11 +111,11 @@ const Wrapper = styled.div`
     margin-top: ${rem(10)};
   }
 
-  [data-reach-slider-input][data-orientation="horizontal"] {
+  [data-reach-slider-input][data-orientation='horizontal'] {
     height: 2px;
   }
 
-  [data-reach-slider-marker][data-orientation="horizontal"] {
+  [data-reach-slider-marker][data-orientation='horizontal'] {
     width: ${rem(20)};
     height: ${rem(20)};
     background-color: transparent;
@@ -125,7 +123,7 @@ const Wrapper = styled.div`
     margin: 0;
 
     &:before {
-      content: "";
+      content: '';
       position: absolute;
       height: 2px;
       width: ${rem(60)};
@@ -143,10 +141,10 @@ const Wrapper = styled.div`
   [data-reach-slider-track] {
     background-color: ${(props) => rgba(props.theme.colors.dark, 0.16)};
 
-    &[data-orientation="horizontal"] {
+    &[data-orientation='horizontal'] {
       &::after,
       &::before {
-        content: "";
+        content: '';
         width: ${rem(15)};
         height: ${rem(20)};
         top: ${rem(-10)};
@@ -161,7 +159,7 @@ const Wrapper = styled.div`
       }
 
       &::after {
-        content: "";
+        content: '';
         left: 100%;
         right: auto;
       }
@@ -183,7 +181,7 @@ const Wrapper = styled.div`
     &:active {
       box-shadow: 0 0 0 ${rem(2)} ${(props) => props.theme.colors.primary};
 
-      ~ [data-reach-slider-marker][data-orientation="horizontal"] {
+      ~ [data-reach-slider-marker][data-orientation='horizontal'] {
         &:before {
           width: ${rem(80)};
           background: linear-gradient(90deg, rgba(2, 0, 36, 0) 0%, rgba(255, 0, 0, 1) 50%, rgba(0, 212, 255, 0) 100%);
@@ -215,7 +213,7 @@ const Wrapper = styled.div`
     [data-reach-slider-track] {
       background-color: ${(props) => rgba(props.theme.colors.dark, 0.16)};
 
-      &[data-orientation="horizontal"] {
+      &[data-orientation='horizontal'] {
         &::after,
         &::before {
           width: 30px;
