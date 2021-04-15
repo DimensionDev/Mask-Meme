@@ -1,7 +1,7 @@
 export const FILE_NAME = 'uni-mask.png'
 
-export const STAGE_WIDTH = 500
-export const STAGE_HEIGHT = 520
+export const STAGE_WIDTH = 800
+export const STAGE_HEIGHT = 820
 
 export const SCALE_FACTOR = 2
 
@@ -13,6 +13,11 @@ export const CONTROLLER_SIZE = 1
 export const CONTROLLER_SIZE_MIN = 0
 export const CONTROLLER_SIZE_MAX = 2
 export const CONTROLLER_SIZE_STEP = 0.01
+
+export const CONTROLLER_TRANSPARENCY_SIZE = 1
+export const CONTROLLER_TRANSPARENCY_MIN = 0
+export const CONTROLLER_TRANSPARENCY_MAX = 1
+export const CONTROLLER_TRANSPARENCY_STEP = 0.1
 
 export const MASK_WIDTH = 100
 export const MASK_HEIGHT = 55

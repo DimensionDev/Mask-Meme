@@ -10,21 +10,29 @@ import {
   CONTROLLER_SIZE_MIN,
   CONTROLLER_SIZE_MAX,
   CONTROLLER_SIZE_STEP,
+  CONTROLLER_TRANSPARENCY_STEP,
+  CONTROLLER_TRANSPARENCY_MAX,
+  CONTROLLER_TRANSPARENCY_MIN,
 } from '../helpers/const'
 
 import { slideUpPopover } from '../core/GlobalStyles'
 
-import Button, { ButtonColor, ButtonSize } from '../components/Button'
+type Icons = {
+  icon: JSX.Element
+}
 
 interface Props {
+  icons?: Icons[]
   rotation: number
   scale: number
+  transparency: number
   onScale: (size: number) => void
   onRotation: (angle: number) => void
+  onTransparency: (transparency: number) => void
   onClose: () => void
 }
 
-const Controller: React.FC<Props> = ({ rotation, scale, onRotation, onScale, onClose }: Props) => {
+const Controller: React.FC<Props> = ({ icons, rotation, scale, transparency, onRotation, onScale, onTransparency, onClose }: Props) => {
   return (
     <OutsideClickHandler onOutsideClick={onClose}>
       <Wrapper>
@@ -68,51 +76,72 @@ const Controller: React.FC<Props> = ({ rotation, scale, onRotation, onScale, onC
             </SliderInput>
           </Group>
 
-          <Button $color={ButtonColor.Gray} $size={ButtonSize.Xs} onClick={onClose}>
-            Save
-          </Button>
+            <Group>
+            <SliderInfo>
+              <h4>Transparency</h4>
+              <span>{(transparency * 100).toFixed(0)}%</span>
+            </SliderInfo>
+
+            <SliderInput
+              value={transparency}
+              min={CONTROLLER_TRANSPARENCY_MIN}
+              max={CONTROLLER_TRANSPARENCY_MAX}
+              step={CONTROLLER_TRANSPARENCY_STEP}
+              onChange={onTransparency}>
+              <SliderTrack>
+                <SliderRange />
+                <SliderHandle />
+                <SliderMarker value={transparency} />
+              </SliderTrack>
+            </SliderInput>
+          </Group>
+
+          <Group>
+            <SliderInfo>
+              <h4>Select Mask</h4>
+            </SliderInfo>
+
+            <List>
+              {icons?.map((icon: Icon) => {
+
+              })}
+            </List>
+          </Group>
+
         </Inner>
       </Wrapper>
     </OutsideClickHandler>
   )
 }
 
+const List = styled.div`
+`
+
+
 const Wrapper = styled.div`
   position: absolute;
+  padding-top: 32px;
+  padding-bottom: 32px;
   bottom: 100%;
-  left: 50%;
+  left: 175px;
+  border-radius: 0 24px 0 0;
   transform: translate(-50%, 0);
   box-shadow: 0 3px 12px 0 rgba(83, 86, 92, 0.1), 0 2px 3px 0 rgba(83, 86, 92, 0.2);
   background-color: ${(props) => props.theme.colors.white};
-  border: 1px solid ${(props) => props.theme.colors.white};
-  width: ${rem(221)};
-  margin-bottom: ${rem(15)};
+  border: 1px solid ${(props) => props.theme.colors.blue};
+  width: ${rem(400)};
   z-index: 11;
   transform: translate3d(0, 10px, 0);
   animation: 0.3s ${slideUpPopover} forwards cubic-bezier(0.2, 1.64, 0.86, 0.86);
   backface-visibility: visible;
-
-  &:after {
-    top: 100%;
-    left: 50%;
-    border: solid transparent;
-    content: '';
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-    border-color: rgba(255, 255, 255, 0);
-    border-top-color: ${(props) => props.theme.colors.white};
-    border-width: 6px;
-    margin-left: -6px;
-  }
 
   ${Button} {
     margin-top: ${rem(10)};
   }
 
   [data-reach-slider-input][data-orientation='horizontal'] {
-    height: 2px;
+    height: 6.86px;
+    border-radius: 10px
   }
 
   [data-reach-slider-marker][data-orientation='horizontal'] {
@@ -122,20 +151,7 @@ const Wrapper = styled.div`
     cursor: pointer;
     margin: 0;
 
-    &:before {
-      content: '';
-      position: absolute;
-      height: 2px;
-      width: ${rem(60)};
-      left: 50%;
-      top: 50%;
-      z-index: -1;
-      margin: 0;
-      transform: translate3d(-50%, -50%, 0);
-      backface-visibility: hidden;
-      background: linear-gradient(90deg, rgba(2, 0, 36, 0) 0%, rgba(0, 0, 0, 1) 50%, rgba(0, 212, 255, 0) 100%);
-      transition: all ${(props) => props.theme.transition.base};
-    }
+   
   }
 
   [data-reach-slider-track] {
@@ -171,7 +187,7 @@ const Wrapper = styled.div`
     height: 14px;
     outline: none;
     border: 0;
-    box-shadow: 0 0 0 ${rem(2)} ${(props) => props.theme.colors.dark};
+    box-shadow: 0 0 0 ${rem(2)} ${(props) => props.theme.colors.blue};
     background-color: ${(props) => props.theme.colors.white};
     transition: box-shadow ${(props) => props.theme.transition.base};
     cursor: pointer;
@@ -179,7 +195,7 @@ const Wrapper = styled.div`
 
     &:hover,
     &:active {
-      box-shadow: 0 0 0 ${rem(2)} ${(props) => props.theme.colors.primary};
+      box-shadow: 0 0 0 ${rem(2)} ${(props) => props.theme.colors.blue};
 
       ~ [data-reach-slider-marker][data-orientation='horizontal'] {
         &:before {
@@ -191,7 +207,7 @@ const Wrapper = styled.div`
   }
 
   [data-reach-slider-range] {
-    background-color: ${(props) => rgba(props.theme.colors.dark, 0.16)};
+    background-color: ${(props) => props.theme.colors.blue};
   }
 
   @media all and (max-width: 767px) {
@@ -232,16 +248,16 @@ const SliderInfo = styled.div`
 
   h4 {
     margin-bottom: 0;
-    font-size: inherit;
-    font-weight: ${(props) => props.theme.fontWeight.bold};
-    letter-spacing: ${rem(2.5)};
-    text-transform: uppercase;
-    color: ${(props) => props.theme.colors.primary};
+    font-size: ${(props) => props.theme.fontSize.base};
+    font-weight: ${(props) => props.theme.fontWeight.medium};
+    text-transform: unset;
+    color: ${(props) => props.theme.colors.dark};
   }
 
   span {
-    font-weight: ${(props) => props.theme.fontWeight.semibold};
+    font-weight: ${(props) => props.theme.fontWeight.medium};
     color: ${(props) => props.theme.colors.dark};
+    font-size: ${(props) => props.theme.fontSize.base};
   }
 
   @media all and (max-width: 767px) {

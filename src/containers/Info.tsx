@@ -73,7 +73,7 @@ const Wrapper = styled.div`
   text-align: center;
 
   ${Row} {
-    height: 100%;
+    padding-top: 100px;
   }
 
   p {

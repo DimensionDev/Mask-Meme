@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import {
   CONTROLLER_ROTATION,
   CONTROLLER_SIZE,
+  CONTROLLER_TRANSPARENCY_SIZE,
   MASK_HEIGHT,
   MASK_WIDTH,
   RENDER_TIME,
@@ -51,14 +52,15 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
   const stageRef = useRef<any>(null)
 
   const [coordinates, setCoordinates] = useState<Vector2d>({
-    x: 263,
-    y: 180,
+    x: 380,
+    y: 390,
   })
 
   const [edit, setEdit] = useState<boolean>(false)
   const [rotation, setRotation] = useState<number>(CONTROLLER_ROTATION)
   const [scale, setScale] = useState<Vector2d>({ x: CONTROLLER_SIZE * 1.1, y: CONTROLLER_SIZE * 1.1 })
   const [cursor, setCursor] = useState<Cursor>(Cursor.Default)
+  const [transparency, setTransparency] = useState<number>(CONTROLLER_TRANSPARENCY_SIZE)
 
   const onDetect = async () => {
     try {
@@ -107,11 +109,12 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
     <Wrapper preview={file} cursor={cursor}>
       <Stage width={STAGE_WIDTH} height={STAGE_HEIGHT} ref={stageRef} className="stage">
         <Layer>
-          <Figure fit src={file || '/static/images/default.jpg'} />
+          <Figure  fit src={file || '/static/images/default.jpg'} />
           <Figure
             draggable
             scale={scale}
             rotation={rotation}
+            opacity={transparency}
             src="/static/images/mask.svg"
             x={coordinates?.x}
             y={coordinates?.y}
@@ -132,28 +135,30 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
             {edit ? (
               <Controller
                 rotation={rotation}
+                transparency={transparency}
                 scale={scale.x}
                 onRotation={setRotation}
                 onScale={onScale}
+                onTransparency={setTransparency}
                 onClose={onEdit}
               />
             ) : null}
 
-            <Button $color={ButtonColor.Black} $size={ButtonSize.Md} onClick={onEdit}>
+            <Button $color={ButtonColor.Blue} $size={ButtonSize.Md} onClick={onEdit}>
               <IconEdit />
               Edit effect
             </Button>
           </Relative>
 
           <Relative>
-            <Button $color={ButtonColor.Red} $size={ButtonSize.Md} onClick={onSave}>
+            <Button $color={ButtonColor.Grey} $size={ButtonSize.Md} onClick={onSave}>
               <IconSave />
               Save
             </Button>
           </Relative>
           <Relative>
             <Button
-              $color={ButtonColor.Red}
+              $color={ButtonColor.Grey}
               $size={ButtonSize.Md}
               as="a"
               target="_blank"
@@ -202,7 +207,7 @@ const Wrapper = styled.div<WrapperProps>`
   }
 
   canvas {
-    padding: ${rem(32)};
+    padding: ${rem(32)} !important;
   }
 
   @media all and (min-width: 481px) {

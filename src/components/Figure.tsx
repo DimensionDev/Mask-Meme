@@ -11,11 +11,13 @@ import { KonvaEventObject } from 'konva/types/Node'
  * Types
  */
 interface Props {
+  className?: string
   x?: number
   y?: number
   offsetX?: number
   offsetY?: number
   rotation?: number
+  opacity?: number
   scale?: Vector2d
   src?: string
   fit?: boolean
@@ -33,6 +35,7 @@ const Figure: React.FC<Props> = ({
   rotation,
   scale,
   draggable,
+  opacity,
   x,
   y,
   offsetX,
@@ -52,6 +55,7 @@ const Figure: React.FC<Props> = ({
     <Image
       x={x}
       y={y}
+      opacity={opacity}
       offsetX={offsetX}
       offsetY={offsetY}
       image={image}

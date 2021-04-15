@@ -14,6 +14,7 @@ export enum ButtonColor {
   Red,
   Black,
   Blue,
+  Grey,
 }
 
 export interface ButtonProps {
@@ -100,6 +101,21 @@ const Button = styled.button<ButtonProps>`
 
       $:hover {
         background-color: #1c68f3;
+      }
+    `}
+
+  ${(props) => 
+    props.$color === ButtonColor.Grey &&
+    css`
+      background-color: rgba(255, 255, 255, 0.8);
+      color: ${props.theme.colors.blue};
+
+      svg path {
+        fill: ${props.theme.colors.blue};
+      }
+
+      $:hover {
+        background-color: rgba(255 255, 255, 0.8);
       }
     `}
 
