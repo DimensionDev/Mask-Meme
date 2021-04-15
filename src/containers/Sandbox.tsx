@@ -25,6 +25,7 @@ import Button, { ButtonColor, ButtonSize } from '../components/Button'
 
 import Controller from './Controller'
 import { KonvaEventObject } from 'konva/types/Node'
+import { rem } from 'polished'
 
 interface Props {
   file?: string
@@ -176,6 +177,7 @@ const Wrapper = styled.div<WrapperProps>`
   overflow: hidden;
   transform: translate3d(0, 0, 0);
   cursor: ${(props) => CURSORS.get(props.cursor)};
+  border-radius: 0 24px 24px 0;
 
   &:before {
     content: '';
@@ -188,11 +190,19 @@ const Wrapper = styled.div<WrapperProps>`
     backdrop-filter: blur(18px);
   }
 
+  >.stage {
+    padding: 0;
+  }
+
   .stage,
   .konvajs-content,
   canvas {
     width: 100% !important;
-    object-fit: cover;
+    object-fit: cover; 
+  }
+
+  canvas {
+    padding: ${rem(32)};
   }
 
   @media all and (min-width: 481px) {

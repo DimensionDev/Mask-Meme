@@ -39,6 +39,7 @@ const Wrapper = styled.div`
   min-height: ${rem(800)};
   transform: translate3d(0, 0, 0);
   background-color: ${(props) => props.theme.colors.odd};
+  border-radius: 24px;
 
   ${Card} {
     flex-basis: 0;
