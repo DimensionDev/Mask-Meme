@@ -41,7 +41,7 @@ const Inner = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
-  padding: ${rem(8)} ${rem(16)};
+  padding: ${rem(8)} ${rem(32)};
 `
 
 const Menu = styled.div`
@@ -95,7 +95,5 @@ const Links = styled.div`
     padding-bottom: 0;
   }
 `
-
-const MenuLink = styled.div``
 
 export default SocialMenu

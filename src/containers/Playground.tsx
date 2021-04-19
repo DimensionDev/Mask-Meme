@@ -35,7 +35,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-wrap: nowrap;
   height: ${rem(820)};
-  height: 55vh;
   min-height: ${rem(800)};
   transform: translate3d(0, 0, 0);
   background-color: ${(props) => props.theme.colors.odd};
@@ -52,6 +51,8 @@ const Wrapper = styled.div`
       padding: 0;
     }
   }
+
+
 
   @media all and (max-width: 1024px) {
     min-height: ${rem(480)};

@@ -7,7 +7,6 @@ import { rem } from 'polished'
 import Button, { ButtonColor, ButtonSize } from '../components/Button'
 import { IconLogo, IconInput, IconTwitter, IconTelegram, IconFacebook, IconDiscord, IconGithub } from '../icons'
 import SocialMenu from 'components/menu'
-import { SvgIconSize } from 'components/SvgIcon'
 
 interface Props {
   onDrop: (files: File[]) => void
@@ -22,7 +21,7 @@ const Info: React.FC<Props> = ({ onDrop }: Props) => {
         <Col xs={12}>
           <IconLogo />
           <h1>Create your own Mask!</h1>
-          <p>
+          <p className='hit'>
             Share your support for Maskl <br />- the portal to the new, open internet.
           </p>
           <UploadWrapper>
@@ -76,6 +75,15 @@ const Wrapper = styled.div`
     padding-top: 100px;
   }
 
+  h1 {
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  p.hit {
+    font-size: 18px;
+  }
+
   p {
     font-size: ${(props) => rem(props.theme.fontSize.lead)};
     margin-bottom: ${rem(28)};
@@ -124,7 +132,7 @@ const UploadWrapper = styled.div`
     padding-left: ${rem(64)};
     border-radius: 8px;
     font-family: ${(props) => props.theme.font.base};
-    font-size: ${rem(18)};
+    font-size: 18px;
   }
 
   @media all and (min-width: 768px) {

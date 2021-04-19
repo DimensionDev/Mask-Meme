@@ -17,22 +17,25 @@ import {
 
 import { slideUpPopover } from '../core/GlobalStyles'
 
-type Icons = {
+type Icon = {
   icon: JSX.Element
+  uri: string
 }
 
 interface Props {
-  icons?: Icons[]
+  icons?: Icon[]
   rotation: number
   scale: number
   transparency: number
+  logoURI: string
   onScale: (size: number) => void
   onRotation: (angle: number) => void
   onTransparency: (transparency: number) => void
   onClose: () => void
+  onLogoURI: (uri: string) => void
 }
 
-const Controller: React.FC<Props> = ({ icons, rotation, scale, transparency, onRotation, onScale, onTransparency, onClose }: Props) => {
+const Controller: React.FC<Props> = ({ logoURI, icons, rotation, scale, transparency, onRotation, onScale, onTransparency, onClose, onLogoURI }: Props) => {
   return (
     <OutsideClickHandler onOutsideClick={onClose}>
       <Wrapper>
@@ -103,41 +106,49 @@ const Controller: React.FC<Props> = ({ icons, rotation, scale, transparency, onR
 
             <List>
               {icons?.map((icon: Icon) => {
-
+                return (<div className={icon.uri === logoURI ? "active": undefined}  onClick={(e) => onLogoURI(icon.uri)}>{icon.icon}</div>)
               })}
             </List>
           </Group>
 
         </Inner>
-      </Wrapper>
+      </Wrapper>  
     </OutsideClickHandler>
   )
 }
 
 const List = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  >div {
+    display: inline;
+    padding-left: 8px;
+    padding-righg: 8px;
+  }
+  >div.active>svg {
+    width: 40px;
+    height: 40px;
+  }
 `
 
 
 const Wrapper = styled.div`
   position: absolute;
-  padding-top: 32px;
-  padding-bottom: 32px;
+  padding: 16px 8px 0px 8px;
   bottom: 100%;
-  left: 175px;
+  left: 141px;
   border-radius: 0 24px 0 0;
+  opacity: 0.8;
   transform: translate(-50%, 0);
   box-shadow: 0 3px 12px 0 rgba(83, 86, 92, 0.1), 0 2px 3px 0 rgba(83, 86, 92, 0.2);
   background-color: ${(props) => props.theme.colors.white};
   border: 1px solid ${(props) => props.theme.colors.blue};
-  width: ${rem(400)};
+  width: ${rem(320)};
   z-index: 11;
   transform: translate3d(0, 10px, 0);
   animation: 0.3s ${slideUpPopover} forwards cubic-bezier(0.2, 1.64, 0.86, 0.86);
   backface-visibility: visible;
-
-  ${Button} {
-    margin-top: ${rem(10)};
-  }
 
   [data-reach-slider-input][data-orientation='horizontal'] {
     height: 6.86px;
@@ -222,9 +233,6 @@ const Wrapper = styled.div`
       top: 8px;
     }
 
-    ${Button} {
-      margin-top: 0;
-    }
 
     [data-reach-slider-track] {
       background-color: ${(props) => rgba(props.theme.colors.dark, 0.16)};
@@ -244,11 +252,11 @@ const SliderInfo = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: ${rem(10)};
+  font-size: ${rem(16)};
 
   h4 {
     margin-bottom: 0;
-    font-size: ${(props) => props.theme.fontSize.base};
+    font-size: 16px;
     font-weight: ${(props) => props.theme.fontWeight.medium};
     text-transform: unset;
     color: ${(props) => props.theme.colors.dark};
@@ -257,7 +265,7 @@ const SliderInfo = styled.div`
   span {
     font-weight: ${(props) => props.theme.fontWeight.medium};
     color: ${(props) => props.theme.colors.dark};
-    font-size: ${(props) => props.theme.fontSize.base};
+    font-size: 16px;
   }
 
   @media all and (max-width: 767px) {

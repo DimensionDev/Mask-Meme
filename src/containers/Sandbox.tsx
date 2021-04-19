@@ -20,7 +20,7 @@ import { download, detectFace, loadModels } from '../helpers/utils'
 
 import { slideUp } from '../core/GlobalStyles'
 
-import { IconEdit, IconSave, IconShare } from '../icons'
+import { IconEdit, IconLogoBlue, IconLogoDark, IconLogoPurple, IconLogoRed, IconLogoYellow, IconSave, IconShare } from '../icons'
 import Figure from '../components/Figure'
 import Button, { ButtonColor, ButtonSize } from '../components/Button'
 
@@ -61,6 +61,7 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
   const [scale, setScale] = useState<Vector2d>({ x: CONTROLLER_SIZE * 1.1, y: CONTROLLER_SIZE * 1.1 })
   const [cursor, setCursor] = useState<Cursor>(Cursor.Default)
   const [transparency, setTransparency] = useState<number>(CONTROLLER_TRANSPARENCY_SIZE)
+  const [logo, setLogo] = useState<string>("/static/images/mask.svg")
 
   const onDetect = async () => {
     try {
@@ -105,17 +106,19 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
     }
   }, [file])
 
+  
+
   return (
     <Wrapper preview={file} cursor={cursor}>
       <Stage width={STAGE_WIDTH} height={STAGE_HEIGHT} ref={stageRef} className="stage">
         <Layer>
-          <Figure  fit src={file || '/static/images/default.jpg'} />
+          <Figure className="background111" fit src={file || '/static/images/default.jpg'} />
           <Figure
             draggable
             scale={scale}
             rotation={rotation}
             opacity={transparency}
-            src="/static/images/mask.svg"
+            src={logo}
             x={coordinates?.x}
             y={coordinates?.y}
             offsetX={MASK_WIDTH / SCALE_FACTOR}
@@ -134,6 +137,14 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
           <Relative>
             {edit ? (
               <Controller
+                icons={[
+                  {icon: <IconLogoBlue />, uri:"/static/images/mask.svg"},
+                  {icon: <IconLogoRed />, uri:"/static/images/mask-red.svg"},
+                  {icon: <IconLogoPurple />, uri:"/static/images/mask-purple.svg"},
+                  {icon: <IconLogoYellow />, uri:"/static/images/mask-yellow.svg"},
+                  {icon: <IconLogoDark />, uri:"/static/images/mask-dark.svg"},
+                ]}
+                logoURI={logo}
                 rotation={rotation}
                 transparency={transparency}
                 scale={scale.x}
@@ -141,6 +152,7 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
                 onScale={onScale}
                 onTransparency={setTransparency}
                 onClose={onEdit}
+                onLogoURI={setLogo}
               />
             ) : null}
 
@@ -163,10 +175,10 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
               as="a"
               target="_blank"
               rel="noreferrer"
-              href="https://twitter.com/intent/tweet?url=uniswap.org&text=Uniswap%20V3%20is%20here.%20Read%20the%20announcement%20blog%20post%20%F0%9F%A6%84%F0%9F%A6%84">
+              href="https://twitter.com/intent/tweet?url=mask.io&text=Mask Meme%20V3%20is%20here.%20Read%20the%20announcement%20blog%20post%20%F0%9F%A6%84%F0%9F%A6%84">
               <IconShare />
               Share
-            </Button>
+            </Button> 
           </Relative>
         </Actions>
       ) : null}
