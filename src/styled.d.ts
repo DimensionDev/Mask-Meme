@@ -29,6 +29,7 @@ declare module 'styled-components' {
       h3: number
       h4: number
       h5: number
+      button: number
     }
     fontWeight: {
       light: number

@@ -150,7 +150,7 @@ const Wrapper = styled.div`
   position: absolute;
   padding: 16px 8px 0px 8px;
   bottom: 100%;
-  left: 141px;
+  left: 222px;
   border-radius: 0 24px 0 0;
   opacity: 0.8;
   transform: translate(-50%, 0);

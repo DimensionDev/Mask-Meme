@@ -18,8 +18,8 @@ const theme = {
     },
   },
   font: {
-    base: " 'Inter', sans-serif",
-    headings: "'Inter', sans-serif",
+    base: " 'pingfang sc', sans-serif",
+    headings: "'pingfang sc', sans-serif",
   },
   fontSize: {
     base: 16,
@@ -29,6 +29,7 @@ const theme = {
     h3: 22,
     h4: 18,
     h5: 16,
+    button: 20,
   },
   fontWeight: {
     light: 200,

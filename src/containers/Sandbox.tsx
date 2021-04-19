@@ -76,7 +76,7 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
     try {
       const data = await detectFace(stageRef?.current?.content)
       setRotation(data.rotation)
-      setCoordinates(data.coordinates)
+      //setCoordinates(data.coordinates)
     } catch (error) {}
   }
 
@@ -119,8 +119,8 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
     <Wrapper preview={file} cursor={cursor}>
       <Stage width={STAGE_WIDTH} height={STAGE_HEIGHT} ref={stageRef} className="stage">
         <Layer>
-          <Figure className="background111" fit src={file || 'static/images/default.jpg'} />
-          <Figure
+          <Figure fit src={file || 'static/images/default.jpg'} />
+          <Figure 
             draggable
             scale={scale}
             rotation={rotation}
@@ -276,7 +276,7 @@ const Relative = styled.div`
 
   > ${Button} {
     transform: translate3d(0, 100%, 0);
-    border-left: 1px solid #000;
+    border-left: 1px solid #fff;
     animation: 0.3s ${slideUp} forwards 1s ease;
   }
 

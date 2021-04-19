@@ -40,8 +40,16 @@ const SocialMenu: React.FC<SocialMenuProps> = ({ link, data, ...props }: SocialM
 const Inner = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   padding: ${rem(8)} ${rem(32)};
+
+  >a {
+    margin-right: 16px;
+  }
+
+  >a:last-child {
+    margin-right: 0;
+  }
 `
 
 const Menu = styled.div`
@@ -76,7 +84,8 @@ const Links = styled.div`
     color: ${(props) => props.theme.colors.blue};
     padding: ${rem(10)};
     white-space: nowrap;
-    font-size: ${rem(18)};
+    font-size: 18px;
+    text-decoration: revert;
     & + a {
       margin-left: ${rem(12)};
     }

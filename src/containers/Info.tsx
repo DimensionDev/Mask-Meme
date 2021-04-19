@@ -22,7 +22,7 @@ const Info: React.FC<Props> = ({ onDrop }: Props) => {
           <IconLogo />
           <h1>Create your own Mask!</h1>
           <p className="hit">
-            Share your support for Maskl <br />- the portal to the new, open internet.
+            Share your support for Mask <br />- the portal to the new, open internet.
           </p>
           <UploadWrapper>
             <div>
@@ -78,10 +78,14 @@ const Wrapper = styled.div`
   h1 {
     margin-top: 24px;
     margin-bottom: 24px;
+    font-size: 40px;
+    color: rgba(17, 20, 50, 1);
+    font-weight: bold;    
   }
 
   p.hit {
-    font-size: 18px;
+    font-size: 24px;
+    color: rgba(71, 79, 86, 1);
   }
 
   p {
@@ -105,8 +109,8 @@ const Wrapper = styled.div`
 const Hint = styled.div`
   margin: ${rem(14)} 0 0;
   opacity: 1;
-  font-size: ${rem(18)};
-  color: ${(props) => props.theme.colors.dark};
+  font-size: 18px;
+  color: rgba(123, 129, 146, 1);  
   letter-spacing: 0;
   text-align: center;
   pointer-events: none;
@@ -117,6 +121,7 @@ const Hint = styled.div`
 `
 
 const UploadWrapper = styled.div`
+  margin-top: 120px;
   padding: ${rem(20)};
   height: ${rem(148)};
   display: flex;
@@ -128,11 +133,10 @@ const UploadWrapper = styled.div`
     text-transform: unset;
     max-width: 100%;
     min-width: ${rem(210)};
-    padding-right: ${rem(64)};
-    padding-left: ${rem(64)};
+    padding: 16px;
     border-radius: 8px;
-    font-family: ${(props) => props.theme.font.base};
-    font-size: 18px;
+    font-family: ${(props) => props.theme.fontSize.button};
+    font-size: 20px;
   }
 
   @media all and (min-width: 768px) {

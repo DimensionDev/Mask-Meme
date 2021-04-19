@@ -6,7 +6,6 @@ import { Grid } from 'react-styled-flexboxgrid'
 import Info from './Info'
 import Sandbox from './Sandbox'
 import Card from '../components/Card'
-import Section from '../components/Section'
 
 const Playground: React.FC = () => {
   const [file, setFile] = useState<string | undefined>()
@@ -17,7 +16,7 @@ const Playground: React.FC = () => {
 
   return (
     <Section>
-      <Grid>
+      <Grid className="grid">
         <Wrapper>
           <Card>
             <Info onDrop={onDrop} />
@@ -30,6 +29,20 @@ const Playground: React.FC = () => {
     </Section>
   )
 }
+
+export interface SectionProps {}
+
+const Section = styled.section<SectionProps>`
+  position: relative;
+  width: 100%;
+
+  ${Grid} {
+    width: 1440px;
+    height: 840px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+`
 
 const Wrapper = styled.div`
   display: flex;
@@ -51,6 +64,8 @@ const Wrapper = styled.div`
       padding: 0;
     }
   }
+
+  
 
   @media all and (max-width: 1024px) {
     min-height: ${rem(480)};
