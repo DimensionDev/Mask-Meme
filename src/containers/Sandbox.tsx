@@ -175,7 +175,7 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
               as="a"
               target="_blank"
               rel="noreferrer"
-              href="https://twitter.com/intent/tweet?url=mask.io&text=Mask Meme%20V3%20is%20here.%20Read%20the%20announcement%20blog%20post%20%F0%9F%A6%84%F0%9F%A6%84">
+              href="https://twitter.com/intent/tweet?url=mask.io&text=Mask Meme%20is%20here.%20Read%20the%20announcement%20blog%20post%20%F0%9F%A6%84%F0%9F%A6%84">
               <IconShare />
               Share
             </Button> 
