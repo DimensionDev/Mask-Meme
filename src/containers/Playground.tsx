@@ -52,8 +52,6 @@ const Wrapper = styled.div`
     }
   }
 
-
-
   @media all and (max-width: 1024px) {
     min-height: ${rem(480)};
   }

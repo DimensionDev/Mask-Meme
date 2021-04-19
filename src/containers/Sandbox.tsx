@@ -20,7 +20,16 @@ import { download, detectFace, loadModels } from '../helpers/utils'
 
 import { slideUp } from '../core/GlobalStyles'
 
-import { IconEdit, IconLogoBlue, IconLogoDark, IconLogoPurple, IconLogoRed, IconLogoYellow, IconSave, IconShare } from '../icons'
+import {
+  IconEdit,
+  IconLogoBlue,
+  IconLogoDark,
+  IconLogoPurple,
+  IconLogoRed,
+  IconLogoYellow,
+  IconSave,
+  IconShare,
+} from '../icons'
 import Figure from '../components/Figure'
 import Button, { ButtonColor, ButtonSize } from '../components/Button'
 
@@ -61,7 +70,7 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
   const [scale, setScale] = useState<Vector2d>({ x: CONTROLLER_SIZE * 1.1, y: CONTROLLER_SIZE * 1.1 })
   const [cursor, setCursor] = useState<Cursor>(Cursor.Default)
   const [transparency, setTransparency] = useState<number>(CONTROLLER_TRANSPARENCY_SIZE)
-  const [logo, setLogo] = useState<string>("/static/images/mask.svg")
+  const [logo, setLogo] = useState<string>('/static/images/mask.svg')
 
   const onDetect = async () => {
     try {
@@ -106,8 +115,6 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
     }
   }, [file])
 
-  
-
   return (
     <Wrapper preview={file} cursor={cursor}>
       <Stage width={STAGE_WIDTH} height={STAGE_HEIGHT} ref={stageRef} className="stage">
@@ -138,11 +145,11 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
             {edit ? (
               <Controller
                 icons={[
-                  {icon: <IconLogoBlue />, uri:"/static/images/mask.svg"},
-                  {icon: <IconLogoRed />, uri:"/static/images/mask-red.svg"},
-                  {icon: <IconLogoPurple />, uri:"/static/images/mask-purple.svg"},
-                  {icon: <IconLogoYellow />, uri:"/static/images/mask-yellow.svg"},
-                  {icon: <IconLogoDark />, uri:"/static/images/mask-dark.svg"},
+                  { icon: <IconLogoBlue />, uri: '/static/images/mask.svg' },
+                  { icon: <IconLogoRed />, uri: '/static/images/mask-red.svg' },
+                  { icon: <IconLogoPurple />, uri: '/static/images/mask-purple.svg' },
+                  { icon: <IconLogoYellow />, uri: '/static/images/mask-yellow.svg' },
+                  { icon: <IconLogoDark />, uri: '/static/images/mask-dark.svg' },
                 ]}
                 logoURI={logo}
                 rotation={rotation}
@@ -175,10 +182,15 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
               as="a"
               target="_blank"
               rel="noreferrer"
-              href="https://twitter.com/intent/tweet?url=mask.io&text=Mask Meme%20is%20here.%20Read%20the%20announcement%20blog%20post%20%F0%9F%A6%84%F0%9F%A6%84">
+              href={
+                stageRef?.current
+                  ? 'https://twitter.com/intent/tweet?text=Mask%20is%20here.%20Create%20your%20own%20Mask%20and%20share%20with%20your%20friends!&url=' +
+                    'mask.io'
+                  : 'https://twitter.com/intent/tweet?text=Mask%20is%20here.%20Create%20your%20own%20Mask%20and%20share%20with%20your%20friends!'
+              }>
               <IconShare />
               Share
-            </Button> 
+            </Button>
           </Relative>
         </Actions>
       ) : null}
@@ -207,7 +219,7 @@ const Wrapper = styled.div<WrapperProps>`
     backdrop-filter: blur(18px);
   }
 
-  >.stage {
+  > .stage {
     padding: 0;
   }
 
@@ -215,7 +227,7 @@ const Wrapper = styled.div<WrapperProps>`
   .konvajs-content,
   canvas {
     width: 100% !important;
-    object-fit: cover; 
+    object-fit: cover;
   }
 
   canvas {

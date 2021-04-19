@@ -21,13 +21,13 @@ const Info: React.FC<Props> = ({ onDrop }: Props) => {
         <Col xs={12}>
           <IconLogo />
           <h1>Create your own Mask!</h1>
-          <p className='hit'>
+          <p className="hit">
             Share your support for Maskl <br />- the portal to the new, open internet.
           </p>
           <UploadWrapper>
             <div>
               <Button $color={ButtonColor.Blue} $size={ButtonSize.Lg} {...getRootProps()}>
-                <IconInput />
+                <IconInput width="24" height="24" />
                 Pick Photo
                 <input {...getInputProps()} name="file" accept="image/*" />
               </Button>

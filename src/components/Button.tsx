@@ -104,7 +104,7 @@ const Button = styled.button<ButtonProps>`
       }
     `}
 
-  ${(props) => 
+  ${(props) =>
     props.$color === ButtonColor.Grey &&
     css`
       background-color: rgba(255, 255, 255, 0.8);

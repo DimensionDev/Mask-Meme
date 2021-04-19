@@ -35,7 +35,18 @@ interface Props {
   onLogoURI: (uri: string) => void
 }
 
-const Controller: React.FC<Props> = ({ logoURI, icons, rotation, scale, transparency, onRotation, onScale, onTransparency, onClose, onLogoURI }: Props) => {
+const Controller: React.FC<Props> = ({
+  logoURI,
+  icons,
+  rotation,
+  scale,
+  transparency,
+  onRotation,
+  onScale,
+  onTransparency,
+  onClose,
+  onLogoURI,
+}: Props) => {
   return (
     <OutsideClickHandler onOutsideClick={onClose}>
       <Wrapper>
@@ -79,7 +90,7 @@ const Controller: React.FC<Props> = ({ logoURI, icons, rotation, scale, transpar
             </SliderInput>
           </Group>
 
-            <Group>
+          <Group>
             <SliderInfo>
               <h4>Transparency</h4>
               <span>{(transparency * 100).toFixed(0)}%</span>
@@ -106,13 +117,16 @@ const Controller: React.FC<Props> = ({ logoURI, icons, rotation, scale, transpar
 
             <List>
               {icons?.map((icon: Icon) => {
-                return (<div className={icon.uri === logoURI ? "active": undefined}  onClick={(e) => onLogoURI(icon.uri)}>{icon.icon}</div>)
+                return (
+                  <div className={icon.uri === logoURI ? 'active' : undefined} onClick={(e) => onLogoURI(icon.uri)}>
+                    {icon.icon}
+                  </div>
+                )
               })}
             </List>
           </Group>
-
         </Inner>
-      </Wrapper>  
+      </Wrapper>
     </OutsideClickHandler>
   )
 }
@@ -121,17 +135,16 @@ const List = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  >div {
+  > div {
     display: inline;
     padding-left: 8px;
     padding-righg: 8px;
   }
-  >div.active>svg {
+  > div.active > svg {
     width: 40px;
     height: 40px;
   }
 `
-
 
 const Wrapper = styled.div`
   position: absolute;
@@ -152,7 +165,7 @@ const Wrapper = styled.div`
 
   [data-reach-slider-input][data-orientation='horizontal'] {
     height: 6.86px;
-    border-radius: 10px
+    border-radius: 10px;
   }
 
   [data-reach-slider-marker][data-orientation='horizontal'] {
@@ -161,8 +174,6 @@ const Wrapper = styled.div`
     background-color: transparent;
     cursor: pointer;
     margin: 0;
-
-   
   }
 
   [data-reach-slider-track] {
@@ -232,7 +243,6 @@ const Wrapper = styled.div`
       right: 40px;
       top: 8px;
     }
-
 
     [data-reach-slider-track] {
       background-color: ${(props) => rgba(props.theme.colors.dark, 0.16)};
