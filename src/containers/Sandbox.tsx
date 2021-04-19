@@ -70,7 +70,7 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
   const [scale, setScale] = useState<Vector2d>({ x: CONTROLLER_SIZE * 1.1, y: CONTROLLER_SIZE * 1.1 })
   const [cursor, setCursor] = useState<Cursor>(Cursor.Default)
   const [transparency, setTransparency] = useState<number>(CONTROLLER_TRANSPARENCY_SIZE)
-  const [logo, setLogo] = useState<string>('/static/images/mask.svg')
+  const [logo, setLogo] = useState<string>('static/images/mask.svg')
 
   const onDetect = async () => {
     try {
@@ -119,7 +119,7 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
     <Wrapper preview={file} cursor={cursor}>
       <Stage width={STAGE_WIDTH} height={STAGE_HEIGHT} ref={stageRef} className="stage">
         <Layer>
-          <Figure className="background111" fit src={file || '/static/images/default.jpg'} />
+          <Figure className="background111" fit src={file || 'static/images/default.jpg'} />
           <Figure
             draggable
             scale={scale}
@@ -145,11 +145,11 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
             {edit ? (
               <Controller
                 icons={[
-                  { icon: <IconLogoBlue />, uri: '/static/images/mask.svg' },
-                  { icon: <IconLogoRed />, uri: '/static/images/mask-red.svg' },
-                  { icon: <IconLogoPurple />, uri: '/static/images/mask-purple.svg' },
-                  { icon: <IconLogoYellow />, uri: '/static/images/mask-yellow.svg' },
-                  { icon: <IconLogoDark />, uri: '/static/images/mask-dark.svg' },
+                  { icon: <IconLogoBlue />, uri: 'static/images/mask.svg' },
+                  { icon: <IconLogoRed />, uri: 'static/images/mask-red.svg' },
+                  { icon: <IconLogoPurple />, uri: 'static/images/mask-purple.svg' },
+                  { icon: <IconLogoYellow />, uri: 'static/images/mask-yellow.svg' },
+                  { icon: <IconLogoDark />, uri: 'static/images/mask-dark.svg' },
                 ]}
                 logoURI={logo}
                 rotation={rotation}
