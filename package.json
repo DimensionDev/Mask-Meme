@@ -1,7 +1,8 @@
 {
-  "name": "uni-mask",
+  "name": "mask-meme",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "@reach/slider": "^0.13.2",
     "@testing-library/jest-dom": "^5.11.4",
@@ -27,7 +28,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "format": "prettier --config .prettierrc 'src/**/*.{ts,tsx}'",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages  -b master -d build"
   },
   "eslintConfig": {
     "extends": [
