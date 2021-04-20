@@ -156,7 +156,7 @@ const Wrapper = styled.div`
   transform: translate(-50%, 0);
   box-shadow: 0 3px 12px 0 rgba(83, 86, 92, 0.1), 0 2px 3px 0 rgba(83, 86, 92, 0.2);
   background-color: ${(props) => props.theme.colors.white};
-  border: 1px solid ${(props) => props.theme.colors.blue};
+  border: 1px solid ${(props) => props.theme.colors.white};
   width: 360px;
   z-index: 11;
   transform: translate3d(0, 10px, 0);

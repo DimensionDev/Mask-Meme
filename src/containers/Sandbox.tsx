@@ -3,7 +3,7 @@ import { Stage, Layer } from 'react-konva'
 import { Vector2d } from 'konva/types/types'
 import { not } from 'ramda'
 import styled from 'styled-components'
-
+import * as clipboard from "clipboard-polyfill";
 import {
   CONTROLLER_ROTATION,
   CONTROLLER_SIZE,
@@ -36,7 +36,8 @@ import Button, { ButtonColor, ButtonSize } from '../components/Button'
 import Controller from './Controller'
 import { KonvaEventObject } from 'konva/types/Node'
 import { rem } from 'polished'
-
+import { slideUpPopover } from '../core/GlobalStyles'
+import OutsideClickHandler from 'react-outside-click-handler'
 interface Props {
   file?: string
 }
@@ -71,6 +72,7 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
   const [cursor, setCursor] = useState<Cursor>(Cursor.Default)
   const [transparency, setTransparency] = useState<number>(CONTROLLER_TRANSPARENCY_SIZE)
   const [logo, setLogo] = useState<string>('static/images/mask.svg')
+  const [share, setShare] = useState<boolean>(false)
 
   const onDetect = async () => {
     try {
@@ -115,10 +117,51 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
     }
   }, [file])
 
+  async function askWritePermission() {
+    try {
+      // The clipboard-write permission is granted automatically to pages 
+    // when they are the active tab. So it's not required, but it's more safe.
+      const { state } = await navigator.permissions.query({ name: 'clipboard-write' })
+      return state === 'granted'
+    } catch (error) {
+      // Browser compatibility / Security error (ONLY HTTPS) ...
+      return false
+    }
+  }
+  // Can we copy a text or an image ?
+
+  const setToClipboard = async (uri: string) => {
+    const data = [new clipboard.ClipboardItem({'image/png': b64toBlob(uri.split(',')[1]) })]
+    await clipboard.write(data)
+  }
+
+  function b64toBlob(b64Data: string, contentType1 = null, sliceSize1 = null) {
+    const contentType = contentType1 || 'image/png'
+    const sliceSize = sliceSize1 || 512
+    let byteCharacters = atob(b64Data)
+    let byteArrays = []
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      let slice = byteCharacters.slice(offset, offset + sliceSize)
+      let byteNumbers = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i)
+      }
+      var byteArray = new Uint8Array(byteNumbers)
+      byteArrays.push(byteArray)
+    }
+    return new Blob(byteArrays, {type: contentType})
+  }
+  const onShare = async () => {
+    const canWriteToClipboard = await askWritePermission()
+    if (canWriteToClipboard)  
+      setToClipboard(stageRef.current.toDataURL())
+    setShare(not(share))
+  }
+
   return (
     <Wrapper preview={file} cursor={cursor}>
       <Stage width={STAGE_WIDTH} height={STAGE_HEIGHT} ref={stageRef} className="stage">
-        <Layer style={{padding: 0}}>
+        <Layer>
           <Figure fit src={file || 'static/images/default.jpg'} />
           <Figure 
             draggable
@@ -176,10 +219,11 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
             </Button>
           </Relative>
           <Relative>
-            <Button
-              $color={ButtonColor.Grey}
-              $size={ButtonSize.Md}
-              as="a"
+          {share ? (
+        <Dialog>
+           <OutsideClickHandler onOutsideClick={onShare}>
+          <p>The picture has been copied to the clipboard, please paste it in the tweet page Ctrl+C</p>
+          <Button  as="a"
               target="_blank"
               rel="noreferrer"
               href={
@@ -187,7 +231,15 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
                   ? 'https://twitter.com/intent/tweet?text=Mask%20is%20here.%20Create%20your%20own%20Mask%20and%20share%20with%20your%20friends!&url=' +
                     'mask.io'
                   : 'https://twitter.com/intent/tweet?text=Mask%20is%20here.%20Create%20your%20own%20Mask%20and%20share%20with%20your%20friends!'
-              }>
+              }>ok</Button>
+              </OutsideClickHandler>
+        </Dialog>
+      ) : null}
+            <Button
+              $color={ButtonColor.Grey}
+              $size={ButtonSize.Md}
+              onClick={(e) => onShare()}
+             >
               <IconShare />
               Share
             </Button>
@@ -197,6 +249,34 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
     </Wrapper>
   )
 }
+
+const Dialog = styled.div`
+  position: absolute;
+  padding: 16px 8px 0px 8px;
+  bottom: 100%;
+  left: 0px;
+  border-radius: 24px 0 0 0;
+  opacity: 0.8;
+  transform: translate(-50%, 0);
+  box-shadow: 0 3px 12px 0 rgba(83, 86, 92, 0.1), 0 2px 3px 0 rgba(83, 86, 92, 0.2);
+  background-color: ${(props) => props.theme.colors.white};
+  border: 1px solid ${(props) => props.theme.colors.white};
+  width: 360px;
+  z-index: 11;
+  transform: translate3d(0, 10px, 0);
+  animation: 0.3s ${slideUpPopover} forwards cubic-bezier(0.2, 1.64, 0.86, 0.86);
+  backface-visibility: visible;
+  padding: 16px 8px;
+
+  ${Button} {
+    background-color: ${(props) => props.theme.colors.blue};
+    color: ${(props) => props.theme.colors.white};
+    font-size: 18px;
+  }
+  p {
+    font-size: 18px;
+  }
+`
 
 const Wrapper = styled.div<WrapperProps>`
   position: relative;
@@ -231,7 +311,7 @@ const Wrapper = styled.div<WrapperProps>`
   }
 
   canvas {
-    padding: ${rem(32)} !important;
+    padding: ${rem(32)};
   }
 
   @media all and (min-width: 481px) {
