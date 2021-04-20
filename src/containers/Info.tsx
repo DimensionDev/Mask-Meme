@@ -133,7 +133,7 @@ const UploadWrapper = styled.div`
     text-transform: unset;
     max-width: 100%;
     min-width: ${rem(210)};
-    padding: 16px;
+    padding: 16px 32px;
     border-radius: 8px;
     font-family: ${(props) => props.theme.fontSize.button};
     font-size: 20px;

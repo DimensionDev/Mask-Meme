@@ -118,7 +118,7 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
   return (
     <Wrapper preview={file} cursor={cursor}>
       <Stage width={STAGE_WIDTH} height={STAGE_HEIGHT} ref={stageRef} className="stage">
-        <Layer>
+        <Layer style={{padding: 0}}>
           <Figure fit src={file || 'static/images/default.jpg'} />
           <Figure 
             draggable
@@ -165,7 +165,7 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
 
             <Button $color={ButtonColor.Blue} $size={ButtonSize.Md} onClick={onEdit}>
               <IconEdit />
-              Edit effect
+              Edit Effect
             </Button>
           </Relative>
 

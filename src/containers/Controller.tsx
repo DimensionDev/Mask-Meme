@@ -150,14 +150,14 @@ const Wrapper = styled.div`
   position: absolute;
   padding: 16px 8px 0px 8px;
   bottom: 100%;
-  left: 222px;
+  left: 180px;
   border-radius: 0 24px 0 0;
   opacity: 0.8;
   transform: translate(-50%, 0);
   box-shadow: 0 3px 12px 0 rgba(83, 86, 92, 0.1), 0 2px 3px 0 rgba(83, 86, 92, 0.2);
   background-color: ${(props) => props.theme.colors.white};
   border: 1px solid ${(props) => props.theme.colors.blue};
-  width: ${rem(320)};
+  width: 360px;
   z-index: 11;
   transform: translate3d(0, 10px, 0);
   animation: 0.3s ${slideUpPopover} forwards cubic-bezier(0.2, 1.64, 0.86, 0.86);

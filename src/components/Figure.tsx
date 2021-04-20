@@ -30,6 +30,7 @@ interface Props {
 }
 
 const Figure: React.FC<Props> = ({
+  className,
   fit,
   src,
   rotation,
@@ -53,6 +54,7 @@ const Figure: React.FC<Props> = ({
 
   return (
     <Image
+      calssName={className}
       x={x}
       y={y}
       opacity={opacity}
