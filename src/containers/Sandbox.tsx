@@ -222,16 +222,12 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
           {share ? (
         <Dialog>
            <OutsideClickHandler onOutsideClick={onShare}>
-          <p>The picture has been copied to the clipboard, please paste it in the tweet page Ctrl+C</p>
+          <p>The picture has been copied to the clipboard, please paste it in the tweet page.</p>
           <Button  as="a"
               target="_blank"
               rel="noreferrer"
-              href={
-                stageRef?.current
-                  ? 'https://twitter.com/intent/tweet?text=Mask%20is%20here.%20Create%20your%20own%20Mask%20and%20share%20with%20your%20friends!&url=' +
-                    'mask.io'
-                  : 'https://twitter.com/intent/tweet?text=Mask%20is%20here.%20Create%20your%20own%20Mask%20and%20share%20with%20your%20friends!'
-              }>ok</Button>
+              href= 'https://twitter.com/intent/tweet?text=Mask%20is%20here.%20Create%20your%20own%20Mask%20and%20share%20with%20your%20friends!%0a@realmaskbook%20&url=event.com'
+              >Ok</Button>
               </OutsideClickHandler>
         </Dialog>
       ) : null}
