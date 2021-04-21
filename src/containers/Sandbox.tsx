@@ -3,7 +3,7 @@ import { Stage, Layer } from 'react-konva'
 import { Vector2d } from 'konva/types/types'
 import { not } from 'ramda'
 import styled from 'styled-components'
-import * as clipboard from "clipboard-polyfill";
+import * as clipboard from 'clipboard-polyfill'
 import {
   CONTROLLER_ROTATION,
   CONTROLLER_SIZE,
@@ -62,13 +62,13 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
   const stageRef = useRef<any>(null)
 
   const [coordinates, setCoordinates] = useState<Vector2d>({
-    x: 380,
-    y: 390,
+    x: 160,
+    y: 180,
   })
 
   const [edit, setEdit] = useState<boolean>(false)
   const [rotation, setRotation] = useState<number>(CONTROLLER_ROTATION)
-  const [scale, setScale] = useState<Vector2d>({ x: CONTROLLER_SIZE * 1.1, y: CONTROLLER_SIZE * 1.1 })
+  const [scale, setScale] = useState<Vector2d>({ x: CONTROLLER_SIZE * 0.5, y: CONTROLLER_SIZE * 0.5 })
   const [cursor, setCursor] = useState<Cursor>(Cursor.Default)
   const [transparency, setTransparency] = useState<number>(CONTROLLER_TRANSPARENCY_SIZE)
   const [logo, setLogo] = useState<string>('static/images/mask.svg')
@@ -119,8 +119,8 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
 
   async function askWritePermission() {
     try {
-      // The clipboard-write permission is granted automatically to pages 
-    // when they are the active tab. So it's not required, but it's more safe.
+      // The clipboard-write permission is granted automatically to pages
+      // when they are the active tab. So it's not required, but it's more safe.
       const { state } = await navigator.permissions.query({ name: 'clipboard-write' })
       return state === 'granted'
     } catch (error) {
@@ -131,7 +131,7 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
   // Can we copy a text or an image ?
 
   const setToClipboard = async (uri: string) => {
-    const data = [new clipboard.ClipboardItem({'image/png': b64toBlob(uri.split(',')[1]) })]
+    const data = [new clipboard.ClipboardItem({ 'image/png': b64toBlob(uri.split(',')[1]) })]
     await clipboard.write(data)
   }
 
@@ -142,19 +142,18 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
     let byteArrays = []
     for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
       let slice = byteCharacters.slice(offset, offset + sliceSize)
-      let byteNumbers = new Array(slice.length);
+      let byteNumbers = new Array(slice.length)
       for (let i = 0; i < slice.length; i++) {
         byteNumbers[i] = slice.charCodeAt(i)
       }
       var byteArray = new Uint8Array(byteNumbers)
       byteArrays.push(byteArray)
     }
-    return new Blob(byteArrays, {type: contentType})
+    return new Blob(byteArrays, { type: contentType })
   }
   const onShare = async () => {
     const canWriteToClipboard = await askWritePermission()
-    if (canWriteToClipboard)  
-      setToClipboard(stageRef.current.toDataURL())
+    if (canWriteToClipboard) setToClipboard(stageRef.current.toDataURL())
     setShare(not(share))
   }
 
@@ -163,7 +162,7 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
       <Stage width={STAGE_WIDTH} height={STAGE_HEIGHT} ref={stageRef} className="stage">
         <Layer>
           <Figure fit src={file || 'static/images/default.jpg'} />
-          <Figure 
+          <Figure
             draggable
             scale={scale}
             rotation={rotation}
@@ -219,23 +218,21 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
             </Button>
           </Relative>
           <Relative>
-          {share ? (
-        <Dialog>
-           <OutsideClickHandler onOutsideClick={onShare}>
-          <p>The picture has been copied to the clipboard, please paste it in the tweet page.</p>
-          <Button  as="a"
-              target="_blank"
-              rel="noreferrer"
-              href= 'https://twitter.com/intent/tweet?text=Mask%20is%20here.%20Create%20your%20own%20Mask%20and%20share%20with%20your%20friends!%0a@realmaskbook%20&url=event.com'
-              >Ok</Button>
-              </OutsideClickHandler>
-        </Dialog>
-      ) : null}
-            <Button
-              $color={ButtonColor.Grey}
-              $size={ButtonSize.Md}
-              onClick={(e) => onShare()}
-             >
+            {share ? (
+              <Dialog>
+                <OutsideClickHandler onOutsideClick={onShare}>
+                  <p>The picture has been copied to the clipboard, please paste it in the tweet page.</p>
+                  <Button
+                    as="a"
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://twitter.com/intent/tweet?text=Mask%20is%20here.%20Create%20your%20own%20Mask%20and%20share%20with%20your%20friends!%0a@realmaskbook%20&url=event.com">
+                    Ok
+                  </Button>
+                </OutsideClickHandler>
+              </Dialog>
+            ) : null}
+            <Button $color={ButtonColor.Grey} $size={ButtonSize.Md} onClick={(e) => onShare()}>
               <IconShare />
               Share
             </Button>

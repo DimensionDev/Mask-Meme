@@ -43,11 +43,11 @@ const Inner = styled.div`
   justify-content: center;
   padding: ${rem(8)} ${rem(32)};
 
-  >a {
+  > a {
     margin-right: 16px;
   }
 
-  >a:last-child {
+  > a:last-child {
     margin-right: 0;
   }
 `

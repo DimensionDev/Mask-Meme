@@ -43,16 +43,24 @@ const Section = styled.section<SectionProps>`
     padding-right: 0;
   }
 
-  @media all and (max-width: 767px) {
+  @media all and (max-width: 1024px) {
     width: 100%;
+
+    ${Grid} {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+    }
   }
 `
 
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  height: ${rem(820)};
-  min-height: ${rem(800)};
+  height: ${rem(420)};
+  height: 55vh;
+  min-height: ${rem(420)};
+
   transform: translate3d(0, 0, 0);
   background-color: ${(props) => props.theme.colors.odd};
   border-radius: 24px;
@@ -69,10 +77,9 @@ const Wrapper = styled.div`
     }
   }
 
-  
-
   @media all and (max-width: 1024px) {
-    min-height: ${rem(480)};
+    min-height: ${rem(840)};
+    flex-direction: columns;
   }
 
   @media all and (max-width: 767px) {
@@ -81,6 +88,7 @@ const Wrapper = styled.div`
     flex-wrap: wrap;
     flex-direction: column-reverse;
     background-color: ${(props) => props.theme.colors.white};
+    border-radius: 0px;
 
     ${Card} {
       flex: 0 0 100%;

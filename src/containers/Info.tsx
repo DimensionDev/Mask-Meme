@@ -40,23 +40,23 @@ const Info: React.FC<Props> = ({ onDrop }: Props) => {
             data={[
               {
                 url: 'https://www.facebook.com/groups/324857694838456',
-                icon: <IconFacebook width={rem(36)} height={rem(36)} />,
+                icon: <IconFacebook width="36" height="36" />,
               },
               {
                 url: 'https://twitter.com/realmaskbook',
-                icon: <IconTwitter width={rem(36)} height={rem(36)} />,
+                icon: <IconTwitter width="36" height="36" />,
               },
               {
                 url: 'https://t.me/maskbook_group#telegram',
-                icon: <IconTelegram width={rem(36)} height={rem(36)} />,
+                icon: <IconTelegram width="36" height="36" />,
               },
               {
                 url: 'https://discord.gg/4SVXvj7',
-                icon: <IconDiscord width={rem(36)} height={rem(36)} />,
+                icon: <IconDiscord width="36" height="36" />,
               },
               {
                 url: 'https://github.com/DimensionDev',
-                icon: <IconGithub width={rem(36)} height={rem(36)} />,
+                icon: <IconGithub width="36" height="36" />,
               },
             ]}
           />
@@ -80,7 +80,7 @@ const Wrapper = styled.div`
     margin-bottom: 24px;
     font-size: 40px;
     color: rgba(17, 20, 50, 1);
-    font-weight: bold;    
+    font-weight: bold;
   }
 
   p.hit {
@@ -110,7 +110,7 @@ const Hint = styled.div`
   margin: ${rem(14)} 0 0;
   opacity: 1;
   font-size: 18px;
-  color: rgba(123, 129, 146, 1);  
+  color: rgba(123, 129, 146, 1);
   letter-spacing: 0;
   text-align: center;
   pointer-events: none;
@@ -121,7 +121,7 @@ const Hint = styled.div`
 `
 
 const UploadWrapper = styled.div`
-  margin-top: 120px;
+  margin-top: 64px;
   padding: ${rem(20)};
   height: ${rem(148)};
   display: flex;
@@ -137,6 +137,7 @@ const UploadWrapper = styled.div`
     border-radius: 8px;
     font-family: ${(props) => props.theme.fontSize.button};
     font-size: 20px;
+    letter-spacing: normal;
   }
 
   @media all and (min-width: 768px) {
