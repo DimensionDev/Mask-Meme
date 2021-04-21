@@ -12,7 +12,7 @@ const Main = styled.main`
     flex-direction: column;
     align-items: center;
     height: 100vh;
-    padding-top:120px;
+    justify-content: center;
   }
 `
 

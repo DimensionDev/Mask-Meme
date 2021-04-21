@@ -38,9 +38,13 @@ const Section = styled.section<SectionProps>`
 
   ${Grid} {
     width: 1440px;
-    height: 840px;
+    height: 100%;
     padding-left: 0;
     padding-right: 0;
+  }
+
+  @media all and (max-width: 767px) {
+    width: 100%;
   }
 `
 
