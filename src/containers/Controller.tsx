@@ -233,12 +233,14 @@ const Wrapper = styled.div`
   }
 
   @media all and (max-width: 767px) {
-    width: 90%;
+    width: 100%;
+    bottom: 32px;
+    left: 50%;
+    border-radius: 0;
   }
 
   @media all and (max-width: 480px) {
     [data-reach-slider-input] {
-      position: absolute;
       left: 60px;
       right: 40px;
       top: 8px;

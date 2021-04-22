@@ -73,6 +73,7 @@ const Wrapper = styled.div`
 
   ${Row} {
     padding-top: 100px;
+    margin: 0px;
   }
 
   h1 {
@@ -88,6 +89,23 @@ const Wrapper = styled.div`
     color: rgba(71, 79, 86, 1);
   }
 
+
+  @media all and (max-width: 767px) {
+    ${Row} {
+      padding-top: 32px;
+      margin: 0px;
+    }
+
+    h1 {
+      font-size: 32px;
+    }
+
+    p.hit {
+      font-size: 16px;
+    }
+  }
+
+ 
   p {
     font-size: ${(props) => rem(props.theme.fontSize.lead)};
     margin-bottom: ${rem(28)};

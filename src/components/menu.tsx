@@ -50,6 +50,10 @@ const Inner = styled.div`
   > a:last-child {
     margin-right: 0;
   }
+
+  @media all and (max-width: 767px) {
+    padding-bottom: 8px;
+  }
 `
 
 const Menu = styled.div`
@@ -62,10 +66,9 @@ const Menu = styled.div`
   }
 
   @media all and (max-width: 767px) {
-    right: -5px;
-    left: auto;
     transform: none !important;
-
+    position: relative;
+    padding-top: 32px;
     &:after {
       left: 80%;
     }

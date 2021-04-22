@@ -78,7 +78,6 @@ const Wrapper = styled.div`
 
   @media all and (max-width: 1024px) {
     min-height: ${rem(840)};
-    flex-direction: columns;
   }
 
   @media all and (max-width: 767px) {
@@ -93,7 +92,8 @@ const Wrapper = styled.div`
       flex: 0 0 100%;
       height: auto;
       background-color: ${(props) => props.theme.colors.odd};
-
+      padding: 0;
+      
       &:first-child {
         margin-bottom: 30px;
         background-color: ${(props) => props.theme.colors.white};

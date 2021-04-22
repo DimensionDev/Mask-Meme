@@ -269,6 +269,13 @@ const Dialog = styled.div`
   p {
     font-size: 18px;
   }
+
+  @media all and (max-width: 767px) {
+    bottom: 32px;
+    width: 100%;
+    left: 50%;
+    border-radius: 0;
+  }
 `
 
 const Wrapper = styled.div<WrapperProps>`
