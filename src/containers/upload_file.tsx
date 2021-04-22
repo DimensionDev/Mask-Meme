@@ -7,13 +7,14 @@ import styled from 'styled-components'
 
 interface Props {
     onDrop: (files: File[]) => void
+    className?: string
 }
 
-const UploadFile: React.FC<Props> = ({onDrop}:Props) => {
+const UploadFile: React.FC<Props> = ({onDrop, className}:Props) => {
 const { getRootProps, getInputProps } = useDropzone({ onDrop })
 
   return (
-<UploadWrapper>
+<UploadWrapper className={className}>
     <div>
         <Button $color={ButtonColor.Blue} $size={ButtonSize.Lg} {...getRootProps()}>
         <IconInput width="24" height="24" />

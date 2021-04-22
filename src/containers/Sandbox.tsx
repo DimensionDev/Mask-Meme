@@ -247,7 +247,7 @@ const Sandbox: React.FC<Props> = ({ file, onDrop }: Props) => {
         ) : null}
       </Wrapper>
 
-      <UploadFile onDrop = {onDrop}/>
+      <UploadFile className="upload" onDrop = {onDrop}/>
       
       <Footer />
     </Card>
@@ -273,6 +273,15 @@ const Card = styled.div`
       test-align: center;
     }
   }
+
+  .upload {
+    display: none;
+
+    @media all and (max-width: 767px) {
+      display: block;
+    }
+  }
+
 `
 
 const Dialog = styled.div`
