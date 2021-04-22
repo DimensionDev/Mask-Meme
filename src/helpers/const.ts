@@ -19,8 +19,8 @@ export const CONTROLLER_TRANSPARENCY_MIN = 0
 export const CONTROLLER_TRANSPARENCY_MAX = 1
 export const CONTROLLER_TRANSPARENCY_STEP = 0.1
 
-export const MASK_WIDTH = 50
-export const MASK_HEIGHT = 25
+export const MASK_WIDTH = 114
+export const MASK_HEIGHT = 78
 
 export const ONE_RADIAN_IN_DEGREES = 180 / Math.PI
 

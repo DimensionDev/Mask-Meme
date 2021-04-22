@@ -1,7 +1,7 @@
 import React from 'react'
 import useImage from 'use-image'
 import { head } from 'ramda'
-import { Image, useStrictMode } from 'react-konva'
+import { Image } from 'react-konva'
 import { Vector2d } from 'konva/types/types'
 
 import { scaleFigure } from '../helpers/utils'

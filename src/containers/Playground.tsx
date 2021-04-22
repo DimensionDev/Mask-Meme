@@ -57,8 +57,7 @@ const Section = styled.section<SectionProps>`
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  height: ${rem(420)};
-  height: 55vh;
+  height: 840px;
   min-height: ${rem(420)};
 
   transform: translate3d(0, 0, 0);
