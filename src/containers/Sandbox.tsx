@@ -38,8 +38,12 @@ import { KonvaEventObject } from 'konva/types/Node'
 import { rem } from 'polished'
 import { slideUpPopover } from '../core/GlobalStyles'
 import OutsideClickHandler from 'react-outside-click-handler'
+import Header from './Header'
+import Footer from './Footer'
+import UploadFile from './upload_file'
 interface Props {
   file?: string
+  onDrop: (files: File[]) => void
 }
 interface WrapperProps {
   preview?: string
@@ -58,17 +62,17 @@ const CURSORS = new Map<Cursor, 'initial' | 'grab' | 'grabbing'>([
   [Cursor.Grabbing, 'grabbing'],
 ])
 
-const Sandbox: React.FC<Props> = ({ file }: Props) => {
+const Sandbox: React.FC<Props> = ({ file, onDrop }: Props) => {
   const stageRef = useRef<any>(null)
 
   const [coordinates, setCoordinates] = useState<Vector2d>({
-    x: 160,
-    y: 180,
+    x: 360,
+    y: 420,
   })
 
   const [edit, setEdit] = useState<boolean>(false)
   const [rotation, setRotation] = useState<number>(CONTROLLER_ROTATION)
-  const [scale, setScale] = useState<Vector2d>({ x: CONTROLLER_SIZE * 0.5, y: CONTROLLER_SIZE * 0.5 })
+  const [scale, setScale] = useState<Vector2d>({ x: CONTROLLER_SIZE * 1.1, y: CONTROLLER_SIZE * 1.1 })
   const [cursor, setCursor] = useState<Cursor>(Cursor.Default)
   const [transparency, setTransparency] = useState<number>(CONTROLLER_TRANSPARENCY_SIZE)
   const [logo, setLogo] = useState<string>('static/images/mask.svg')
@@ -158,90 +162,118 @@ const Sandbox: React.FC<Props> = ({ file }: Props) => {
   }
 
   return (
-    <Wrapper preview={file} cursor={cursor}>
-      <Stage width={STAGE_WIDTH} height={STAGE_HEIGHT} ref={stageRef} className="stage">
-        <Layer>
-          <Figure fit src={file || 'static/images/default.jpg'} />
-          <Figure
-            draggable
-            scale={scale}
-            rotation={rotation}
-            opacity={transparency}
-            src={logo}
-            x={coordinates?.x}
-            y={coordinates?.y}
-            offsetX={MASK_WIDTH / SCALE_FACTOR}
-            offsetY={MASK_HEIGHT / SCALE_FACTOR}
-            onMouseEnter={() => setCursor(Cursor.Grab)}
-            onMouseLeave={() => setCursor(Cursor.Default)}
-            onMouseDown={() => setCursor(Cursor.Grabbing)}
-            onMouseUp={() => setCursor(Cursor.Default)}
-            onDragMove={onDragMove}
-          />
-        </Layer>
-      </Stage>
+    <Card>
+      <Header />
+      <Wrapper preview={file} cursor={cursor}>
+        <Stage width={STAGE_WIDTH} height={STAGE_HEIGHT} ref={stageRef} className="stage">
+          <Layer>
+            <Figure fit src={file || 'static/images/default.jpg'} />
+            <Figure
+              draggable
+              scale={scale}
+              rotation={rotation}
+              opacity={transparency}
+              src={logo}
+              x={coordinates?.x}
+              y={coordinates?.y}
+              offsetX={MASK_WIDTH / SCALE_FACTOR}
+              offsetY={MASK_HEIGHT / SCALE_FACTOR}
+              onMouseEnter={() => setCursor(Cursor.Grab)}
+              onMouseLeave={() => setCursor(Cursor.Default)}
+              onMouseDown={() => setCursor(Cursor.Grabbing)}
+              onMouseUp={() => setCursor(Cursor.Default)}
+              onDragMove={onDragMove}
+            />
+          </Layer>
+        </Stage>
 
-      {file ? (
-        <Actions>
-          <Relative>
-            {edit ? (
-              <Controller
-                icons={[
-                  { icon: <IconLogoBlue />, uri: 'static/images/mask.svg' },
-                  { icon: <IconLogoRed />, uri: 'static/images/mask-red.svg' },
-                  { icon: <IconLogoPurple />, uri: 'static/images/mask-purple.svg' },
-                  { icon: <IconLogoYellow />, uri: 'static/images/mask-yellow.svg' },
-                  { icon: <IconLogoDark />, uri: 'static/images/mask-dark.svg' },
-                ]}
-                logoURI={logo}
-                rotation={rotation}
-                transparency={transparency}
-                scale={scale.x}
-                onRotation={setRotation}
-                onScale={onScale}
-                onTransparency={setTransparency}
-                onClose={onEdit}
-                onLogoURI={setLogo}
-              />
-            ) : null}
+        {file ? (
+          <Actions>
+            <Relative>
+              {edit ? (
+                <Controller
+                  icons={[
+                    { icon: <IconLogoBlue />, uri: 'static/images/mask.svg' },
+                    { icon: <IconLogoRed />, uri: 'static/images/mask-red.svg' },
+                    { icon: <IconLogoPurple />, uri: 'static/images/mask-purple.svg' },
+                    { icon: <IconLogoYellow />, uri: 'static/images/mask-yellow.svg' },
+                    { icon: <IconLogoDark />, uri: 'static/images/mask-dark.svg' },
+                  ]}
+                  logoURI={logo}
+                  rotation={rotation}
+                  transparency={transparency}
+                  scale={scale.x}
+                  onRotation={setRotation}
+                  onScale={onScale}
+                  onTransparency={setTransparency}
+                  onClose={onEdit}
+                  onLogoURI={setLogo}
+                />
+              ) : null}
 
-            <Button $color={ButtonColor.Blue} $size={ButtonSize.Md} onClick={onEdit}>
-              <IconEdit />
-              Edit Effect
-            </Button>
-          </Relative>
+              <Button $color={ButtonColor.Blue} $size={ButtonSize.Md} onClick={onEdit}>
+                <IconEdit />
+                Edit Effect
+              </Button>
+            </Relative>
 
-          <Relative>
-            <Button $color={ButtonColor.Grey} $size={ButtonSize.Md} onClick={onSave}>
-              <IconSave />
-              Save
-            </Button>
-          </Relative>
-          <Relative>
-            {share ? (
-              <Dialog>
-                <OutsideClickHandler onOutsideClick={onShare}>
-                  <p>The picture has been copied to the clipboard, please paste it in the tweet page.</p>
-                  <Button
-                    as="a"
-                    target="_blank"
-                    rel="noreferrer"
-                    href="https://twitter.com/intent/tweet?text=Mask%20is%20here.%20Create%20your%20own%20Mask%20and%20share%20with%20your%20friends!%0a@realmaskbook%20&url=event.com">
-                    Ok
-                  </Button>
-                </OutsideClickHandler>
-              </Dialog>
-            ) : null}
-            <Button $color={ButtonColor.Grey} $size={ButtonSize.Md} onClick={(e) => onShare()}>
-              <IconShare />
-              Share
-            </Button>
-          </Relative>
-        </Actions>
-      ) : null}
-    </Wrapper>
+            <Relative>
+              <Button $color={ButtonColor.Grey} $size={ButtonSize.Md} onClick={onSave}>
+                <IconSave />
+                Save
+              </Button>
+            </Relative>
+            <Relative>
+              {share ? (
+                <Dialog>
+                  <OutsideClickHandler onOutsideClick={onShare}>
+                    <p>Your meme has been copied to the click-board, don't forget to paste it in the share page. </p>
+                    <Button
+                      as="a"
+                      target="_blank"
+                      rel="noreferrer"
+                      href="https://twitter.com/intent/tweet?text=Mask%20is%20here.%20Create%20your%20own%20Mask%20and%20share%20with%20your%20friends!%0a@realmaskbook%20&url=event.com">
+                      Ok
+                    </Button>
+                  </OutsideClickHandler>
+                </Dialog>
+              ) : null}
+              <Button $color={ButtonColor.Grey} $size={ButtonSize.Md} onClick={(e) => onShare()}>
+                <IconShare />
+                Share
+              </Button>
+            </Relative>
+          </Actions>
+        ) : null}
+      </Wrapper>
+
+      <UploadFile onDrop = {onDrop}/>
+      
+      <Footer />
+    </Card>
+    
   )
 }
+
+const Card = styled.div`
+  header {
+    display: none;
+
+    @media all and (max-width: 767px) {
+      display: block;
+      text-align: center;
+    }
+  }
+
+  footer {
+    display: none;
+
+    @media all and (max-width: 767px) {
+      display: block;
+      test-align: center;
+    }
+  }
+`
 
 const Dialog = styled.div`
   position: absolute;
@@ -267,7 +299,8 @@ const Dialog = styled.div`
     font-size: 18px;
   }
   p {
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 500;
   }
 
   @media all and (max-width: 767px) {
@@ -275,6 +308,11 @@ const Dialog = styled.div`
     width: 100%;
     left: 50%;
     border-radius: 0;
+
+    p {
+      font-size: 16px;
+      font-weight: 500;
+    }
   }
 `
 
@@ -310,18 +348,15 @@ const Wrapper = styled.div<WrapperProps>`
     object-fit: cover;
   }
 
+
   canvas {
     padding: ${rem(32)};
   }
-
+  
   @media all and (min-width: 481px) {
-    height: 100% !important;
+   
 
-    .stage,
-    .konvajs-content,
-    canvas {
-      height: 100% !important;
-    }
+   
   }
 
   @media all and (max-width: 480px) {

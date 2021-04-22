@@ -78,6 +78,8 @@ const Menu = styled.div`
 const Links = styled.div`
   padding-bottom: ${rem(10)};
 
+  text-align: center;
+
   svg path {
     fill: ${(props) => props.theme.colors.primary};
     transition: fill ${(props) => props.theme.transition.base};

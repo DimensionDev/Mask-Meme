@@ -18,11 +18,11 @@ const Playground: React.FC = () => {
     <Section>
       <Grid className="grid">
         <Wrapper>
-          <Card>
-            <Info onDrop={onDrop} />
+          <Card className="info">
+            <Info onDrop={onDrop}/>
           </Card>
           <Card>
-            <Sandbox file={file} />
+            <Sandbox file={file} onDrop={onDrop} />
           </Card>
         </Wrapper>
       </Grid>
@@ -38,7 +38,7 @@ const Section = styled.section<SectionProps>`
 
   ${Grid} {
     width: 1440px;
-    height: 100%;
+    height: 840px;
     padding-left: 0;
     padding-right: 0;
   }
@@ -48,7 +48,7 @@ const Section = styled.section<SectionProps>`
 
     ${Grid} {
       width: 100%;
-      height: 100%;
+      height: auto;
       padding: 0;
     }
   }
@@ -58,11 +58,14 @@ const Wrapper = styled.div`
   display: flex;
   flex-wrap: nowrap;
   height: 840px;
-  min-height: ${rem(420)};
 
   transform: translate3d(0, 0, 0);
   background-color: ${(props) => props.theme.colors.odd};
   border-radius: 24px;
+
+  .info {
+    display: block;
+  }
 
   ${Card} {
     flex-basis: 0;
@@ -83,17 +86,21 @@ const Wrapper = styled.div`
   @media all and (max-width: 767px) {
     height: auto;
     min-height: 0;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: column-reverse;
     background-color: ${(props) => props.theme.colors.white};
     border-radius: 0px;
+
+    .info {
+      display: none;
+    }
 
     ${Card} {
       flex: 0 0 100%;
       height: auto;
       background-color: ${(props) => props.theme.colors.odd};
       padding: 0;
-      
+
       &:first-child {
         margin-bottom: 30px;
         background-color: ${(props) => props.theme.colors.white};

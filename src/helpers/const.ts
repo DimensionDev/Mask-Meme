@@ -1,7 +1,7 @@
 export const FILE_NAME = 'uni-mask.png'
 
-export const STAGE_WIDTH = 360
-export const STAGE_HEIGHT = 420
+export const STAGE_WIDTH = 720
+export const STAGE_HEIGHT = 840
 
 export const SCALE_FACTOR = 2
 

@@ -1,71 +1,49 @@
 import React from 'react'
-import { Grid } from 'react-styled-flexboxgrid'
 import styled from 'styled-components'
-import { rem } from 'polished'
-
-const StyledLogo = styled.img`
-  height: 60px;
-`
+import IconLogo from 'icons/IconLogo'
 
 const Header: React.FC = () => {
   return (
     <Wrapper>
-      <Grid>
-        <Logo href="/"></Logo>
-      </Grid>
+      <IconLogo />
+      <h1>Create your own Mask!</h1>
+      <p className="hit">
+        Share your support for Mask <br />- the portal to the new, open internet.
+      </p>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.header`
-  padding: ${rem(70)} 0;
-  padding: 5vh 0;
-  letter-spacing: 0;
-  line-height: 1;
-  width: 100%;
-  text-align: center;
+  h1 {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    font-size: 40px;
+    color: rgba(17, 20, 50, 1);
+    font-weight: bold;
+  }
+
+  p.hit {
+    font-size: 24px;
+    color: rgba(71, 79, 86, 1);
+  }
 
   @media all and (max-width: 767px) {
     padding: 12px 0;
-  }
-`
 
-const Logo = styled.a`
-  font-size: ${(props) => rem(props.theme.fontSize.base)};
-  font-weight: ${(props) => props.theme.fontWeight.black};
-  text-align: center;
-  font-style: italic;
-  text-transform: uppercase;
-  display: inline-block;
-
-  img {
-    margin-bottom: ${rem(8)};
-    user-select: none;
-    transition: transform 0.3s cubic-bezier(0.2, 1.64, 0.41, 0.2);
-  }
-
-  span {
-    display: block;
-  }
-
-  @media all and (min-width: 768px) {
-    &:hover {
-      img {
-        transform: translate3d(0, -10px, 0);
-        transition: transform 0.3s ease-in-out;
-      }
+    svg {
+      width: 168px;
+      height: 48px;
     }
-  }
-
-  @media all and (max-width: 767px) {
-    span {
-      display: none;
+    h1 {
+      font-size: 24px;
     }
 
-    img {
-      margin-bottom: 0;
-      width: 22px;
+    p.hit {
+      font-size: 16px;
     }
+
+   
   }
 `
 
