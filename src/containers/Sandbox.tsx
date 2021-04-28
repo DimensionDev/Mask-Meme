@@ -262,6 +262,7 @@ const Card = styled.div`
     @media all and (max-width: 767px) {
       display: block;
       text-align: center;
+      padding-top:48px;
     }
   }
 
@@ -371,6 +372,7 @@ const Wrapper = styled.div<WrapperProps>`
   @media all and (max-width: 480px) {
     overflow: visible;
     transform: none;
+    padding: 8px;
   }
 `
 

@@ -88,7 +88,7 @@ const Wrapper = styled.div`
     min-height: 0;
     flex-wrap: nowrap;
     flex-direction: column-reverse;
-    background-color: ${(props) => props.theme.colors.white};
+    background-color: ${(props) => props.theme.colors.grey};
     border-radius: 0px;
 
     .info {
@@ -98,12 +98,12 @@ const Wrapper = styled.div`
     ${Card} {
       flex: 0 0 100%;
       height: auto;
-      background-color: ${(props) => props.theme.colors.odd};
+      background-color: ${(props) => props.theme.colors.grey};
       padding: 0;
 
       &:first-child {
         margin-bottom: 30px;
-        background-color: ${(props) => props.theme.colors.white};
+        background-color: ${(props) => props.theme.colors.grey};
 
         @media all and (min-width: 481px) {
           height: 400px;
