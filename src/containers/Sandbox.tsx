@@ -256,6 +256,10 @@ const Sandbox: React.FC<Props> = ({ file, onDrop }: Props) => {
 }
 
 const Card = styled.div`
+
+  @media all and (max-width: 767px) {
+    padding: 8px;
+  }
   header {
     display: none;
 
@@ -372,7 +376,6 @@ const Wrapper = styled.div<WrapperProps>`
   @media all and (max-width: 480px) {
     overflow: visible;
     transform: none;
-    padding: 8px;
   }
 `
 
